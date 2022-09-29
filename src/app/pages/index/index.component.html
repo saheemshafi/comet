@@ -64,61 +64,78 @@
     >
     🌐
   </h2>
-  <div>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Music
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Movies
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Gaming
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Education
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Health
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      News
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Trending
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Sports
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Fashion and beauty
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-    >
-      Live
-    </span>
-    <span
-      class="text-md my-2 mr-2 inline-flex cursor-default rounded-full px-3 py-1 font-semibold text-slate-400"
-    >
-      and many more...
-    </span>
+  <div class="md:flex md:space-x-8">
+    <div class="flex-1">
+      <img
+        src="../../../assets/images/categories.webp"
+        alt="categories"
+        class="h-full rounded-2xl object-cover shadow"
+      />
+    </div>
+    <div class="flex-1">
+      <div class="mt-8 md:mt-0">
+        <span
+          *ngFor="let category of categories"
+          class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
+        >
+          {{ category.name }}
+        </span>
+        <span
+          class="text-md my-2 mr-2 inline-flex cursor-default rounded-full px-3 py-1 font-semibold text-slate-400"
+        >
+          and many more...
+        </span>
+      </div>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-8">
+        <div
+          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
+        >
+          <div>
+            <img
+              class="mx-auto w-14"
+              src="../../../assets/images/musical-notes.png"
+              alt="music"
+            />
+          </div>
+          <h3 class="mt-8 text-center text-2xl text-slate-400">Music</h3>
+        </div>
+        <div
+          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
+        >
+          <div>
+            <img
+              class="mx-auto w-14"
+              src="../../../assets/images/game-console.png"
+              alt="music"
+            />
+          </div>
+          <h3 class="mt-8 text-center text-2xl text-slate-400">Gaming</h3>
+        </div>
+        <div
+          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
+        >
+          <div>
+            <img
+              class="mx-auto w-14"
+              src="../../../assets/images/live.png"
+              alt="music"
+            />
+          </div>
+          <h3 class="mt-8 text-center text-2xl text-slate-400">Live Streams</h3>
+        </div>
+        <div
+          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
+        >
+          <div>
+            <img
+              class="mx-auto w-14"
+              src="../../../assets/images/newspaper.png"
+              alt="music"
+            />
+          </div>
+          <h3 class="mt-8 text-center text-2xl text-slate-400">News</h3>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
