@@ -1,10 +1,5 @@
 <app-hero-section></app-hero-section>
 <section class="bg-blue-900/20 py-4 px-2 sm:px-8">
-  <!-- <h3
-    class="mb-8 mt-4 bg-gradient-to-tr from-orange-500 to-rose-500 bg-clip-text text-center text-2xl font-bold capitalize leading-relaxed tracking-wide text-transparent"
-  >
-    Designed and developed using
-  </h3> -->
   <div
     class="mx-auto flex flex-col items-center justify-center space-y-8 lg:w-4/5 lg:flex-row lg:space-x-8 lg:space-y-0"
   >
@@ -37,105 +32,8 @@
     </div>
   </div>
 </section>
-<section class="py-8 px-2 sm:px-8">
-  <h2
-    class="mb-4 text-2xl font-semibold leading-relaxed text-white sm:text-3xl"
-  >
-    Search For Videos And
-    <span
-      class="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text font-bold tracking-wide text-transparent"
-      >Have fun</span
-    >
-    🎉
-  </h2>
-  <div
-    class="h-96 rounded-3xl bg-cover bg-no-repeat shadow-lg"
-    style="background-image: url(../../../assets/images/search-background.png)"
-  ></div>
-</section>
-<section class="py-8 px-2 sm:px-8">
-  <h2
-    class="mb-4 text-2xl font-semibold leading-relaxed text-white sm:text-3xl"
-  >
-    Browse through categories
-    <span
-      class="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text font-bold tracking-wide text-transparent"
-      >with ease</span
-    >
-    🌐
-  </h2>
-  <div class="md:flex md:space-x-8">
-    <div class="flex-1">
-      <img
-        src="../../../assets/images/categories.webp"
-        alt="categories"
-        class="h-full rounded-2xl object-cover shadow"
-      />
-    </div>
-    <div class="flex-1">
-      <div class="mt-8 md:mt-0">
-        <span
-          *ngFor="let category of categories"
-          class="text-md my-2 mr-2 inline-flex cursor-default rounded-full bg-slate-800 px-3 py-1 font-semibold text-slate-400 shadow-sm hover:bg-slate-700 hover:text-slate-300"
-        >
-          {{ category.name }}
-        </span>
-        <span
-          class="text-md my-2 mr-2 inline-flex cursor-default rounded-full px-3 py-1 font-semibold text-slate-400"
-        >
-          and many more...
-        </span>
-      </div>
-      <div class="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-8">
-        <div
-          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
-        >
-          <div>
-            <img
-              class="mx-auto w-14"
-              src="../../../assets/images/musical-notes.png"
-              alt="music"
-            />
-          </div>
-          <h3 class="mt-8 text-center text-2xl text-slate-400">Music</h3>
-        </div>
-        <div
-          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
-        >
-          <div>
-            <img
-              class="mx-auto w-14"
-              src="../../../assets/images/game-console.png"
-              alt="music"
-            />
-          </div>
-          <h3 class="mt-8 text-center text-2xl text-slate-400">Gaming</h3>
-        </div>
-        <div
-          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
-        >
-          <div>
-            <img
-              class="mx-auto w-14"
-              src="../../../assets/images/live.png"
-              alt="music"
-            />
-          </div>
-          <h3 class="mt-8 text-center text-2xl text-slate-400">Live Streams</h3>
-        </div>
-        <div
-          class="rounded-lg border border-slate-800 p-5 shadow transition-colors duration-200 hover:bg-slate-800"
-        >
-          <div>
-            <img
-              class="mx-auto w-14"
-              src="../../../assets/images/newspaper.png"
-              alt="music"
-            />
-          </div>
-          <h3 class="mt-8 text-center text-2xl text-slate-400">News</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<app-page-info
+  *ngFor="let pageInfo of pageInfos; let isOdd = odd"
+  [pageInfo]="pageInfo"
+  [isOdd]="isOdd"
+></app-page-info>
