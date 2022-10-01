@@ -14,7 +14,7 @@
         class="mx-auto w-1/2 rounded-2xl"
       />
       <ng-template #showCategories>
-        <div class="mt-5 grid grid-cols-2 gap-3 sm:gap-8">
+        <div class="mt-5 grid grid-cols-2 gap-3 sm:mr-12 sm:gap-8">
           <app-index-category-card
             *ngFor="let category of pageInfo.categories"
             [src]="category.image"
