@@ -11,6 +11,10 @@ import { HeroSectionComponent } from './components/hero-section/hero-section.com
 import { IndexCategoryCardComponent } from './components/index-category-card/index-category-card.component';
 import { PageInfoComponent } from './components/page-info/page-info.component';
 import { HttpClientModule } from '@angular/common/http';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +26,14 @@ import { HttpClientModule } from '@angular/common/http';
     IndexCategoryCardComponent,
     PageInfoComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+  ],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
