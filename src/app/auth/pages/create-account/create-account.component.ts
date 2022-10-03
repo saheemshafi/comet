@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { UserAccount } from 'src/app/interfaces/user-account';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,6 +13,9 @@ export class CreateAccountComponent implements OnInit {
 
   ngOnInit(): void {}
   signUpWithGoogle() {
-    this.authService.login();
+    this.authService.signWithGoogle();
+  }
+  signUpWithEmail(form: NgForm): void {
+    this.authService.signUpWithEmail(form.value);
   }
 }

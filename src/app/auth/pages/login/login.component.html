@@ -1,6 +1,8 @@
 <section>
   <div class="flex flex-col items-center justify-center px-2 py-6 sm:p-4">
     <form
+      #form="ngForm"
+      (ngSubmit)="login(form)"
       class="w-full rounded-lg bg-slate-800 px-4 py-4 shadow sm:rounded-2xl sm:px-8 sm:py-8 md:w-2/3 xl:w-1/2"
     >
       <h2
@@ -15,6 +17,7 @@
       </h2>
       <div class="relative mt-8">
         <button
+          (click)="loginWithGoogle()"
           class="inline-flex w-full items-center justify-center space-x-4 rounded-full border border-slate-500/50 bg-slate-600/20 py-3 px-8 transition-colors hover:bg-slate-700"
         >
           <div>
@@ -43,6 +46,8 @@
           type="email"
           placeholder="Email"
           autocomplete="off"
+          name="email"
+          ngModel
         />
         <label
           for="email"
@@ -75,6 +80,8 @@
           type="password"
           placeholder="Password"
           autocomplete="off"
+          name="password"
+          ngModel
         />
         <label
           for="password"

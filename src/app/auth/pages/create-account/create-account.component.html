@@ -1,6 +1,8 @@
 <section>
   <div class="flex flex-col items-center justify-center px-2 py-6 sm:p-4">
     <form
+      #form="ngForm"
+      (ngSubmit)="signUpWithEmail(form)"
       class="w-full rounded-lg bg-slate-800 px-4 py-4 shadow sm:rounded-2xl sm:px-8 sm:py-8 md:w-2/3 xl:w-1/2"
     >
       <h2
@@ -43,8 +45,10 @@
           id="email"
           class="peer w-full rounded-full border-slate-500 bg-transparent py-3 pl-8 pr-14 text-lg text-slate-100 placeholder:text-transparent focus:border-slate-600 focus:bg-slate-800/25 focus:ring-2 focus:ring-blue-400/20"
           type="email"
+          name="email"
           placeholder="Email"
           autocomplete="off"
+          ngModel
         />
         <label
           for="email"
@@ -75,8 +79,10 @@
           id="password"
           class="peer w-full rounded-full border-slate-500 bg-transparent py-3 pl-8 pr-14 text-lg text-slate-100 placeholder:text-transparent focus:border-slate-600 focus:bg-slate-800/25 focus:ring-2 focus:ring-blue-400/20"
           type="password"
+          name="password"
           placeholder="Password"
           autocomplete="off"
+          ngModel
         />
         <label
           for="password"
