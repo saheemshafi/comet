@@ -8,30 +8,33 @@ import { UserAccount } from '../interfaces/user-account';
   providedIn: 'root',
 })
 export class AuthService {
-  user!: User;
-  constructor(private fireAuth: AngularFireAuth) {}
+  constructor(private fireAuth: AngularFireAuth, private router: Router) {}
   signWithGoogle(): void {
     const provider = new firebase.auth.GoogleAuthProvider();
     this.fireAuth.signInWithPopup(provider).then((credentials) => {
-      this.user = <User>credentials.user;
+      this.navigateAndSaveUser(<User>credentials.user);
     });
   }
   signUpWithEmail(user: UserAccount): void {
     this.fireAuth
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((credentials) => {
-        this.user = <User>credentials.user;
+        this.navigateAndSaveUser(<User>credentials.user);
       });
+  }
+  navigateAndSaveUser(user: User): void {
+    this.router.navigate(['d']);
+    localStorage.setItem('uid', user.uid);
   }
   loginWithEmail(user: UserAccount): void {
     this.fireAuth
       .signInWithEmailAndPassword(user.email, user.password)
       .then((credentials) => {
-        this.user = <User>credentials.user;
-        console.log(credentials.user);
+        this.navigateAndSaveUser(<User>credentials.user);
       });
   }
   logout(): void {
     this.fireAuth.signOut();
+    this.router.navigate(['auth/login']);
   }
 }
