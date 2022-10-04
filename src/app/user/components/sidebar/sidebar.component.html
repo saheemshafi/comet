@@ -1,1 +1,24 @@
-<p>sidebar works!</p>
+<aside class="w-70 fixed top-0 left-0 z-10 h-full overflow-y-auto bg-slate-900">
+  <h3
+    class="my-4 ml-4 border-b border-slate-700 pb-1 text-lg font-medium uppercase tracking-wider text-slate-400"
+  >
+    Categories
+  </h3>
+
+  <ul class="px-3">
+    <li *ngFor="let category of categories" class="my-1">
+      <a
+        class="group flex items-center rounded-full px-5 py-3 text-base font-medium tracking-wide text-slate-300 transition-all duration-200 hover:border-rose-500 hover:bg-rose-500 hover:text-white"
+        [routerLink]="'videos/' + category.name"
+        [routerLinkActive]="
+          'text-white bg-rose-500 [&_i]:text-white [&_span]:text-white'
+        "
+        ><i
+          class="mr-3 text-2xl text-rose-500 group-hover:text-white"
+          [class]="category.icon"
+        ></i
+        ><span>{{ category.name }}</span></a
+      >
+    </li>
+  </ul>
+</aside>

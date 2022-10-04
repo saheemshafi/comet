@@ -8,8 +8,9 @@ const routes: Routes = [
     path: '',
     component: UserComponent,
     children: [
-      { path: '', redirectTo: 'videos', pathMatch: 'full' },
-      { path: 'videos', component: VideosComponent },
+      { path: '', redirectTo: 'videos/General', pathMatch: 'full' },
+      { path: 'videos', redirectTo: 'videos/General' },
+      { path: 'videos/:category', component: VideosComponent },
       { path: 'video', component: VideosComponent },
       { path: 'channel', component: VideosComponent },
     ],

@@ -18,4 +18,7 @@ export class CreateAccountComponent implements OnInit {
   signUpWithEmail(form: NgForm): void {
     this.authService.signUpWithEmail(form.value);
   }
+  logout() {
+    this.authService.logout();
+  }
 }

@@ -24,7 +24,7 @@ export class AuthService {
   }
   navigateAndSaveUser(user: User): void {
     this.router.navigate(['d']);
-    localStorage.setItem('uid', user.uid);
+    localStorage.setItem('user', JSON.stringify(user));
   }
   loginWithEmail(user: UserAccount): void {
     this.fireAuth
@@ -36,5 +36,6 @@ export class AuthService {
   logout(): void {
     this.fireAuth.signOut();
     this.router.navigate(['auth/login']);
+    localStorage.removeItem('user');
   }
 }

@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  production: false,
   firebase: {
     projectId: 'comet-multimedia',
     appId: '1:394705205935:web:698ba7b36b1a38a7ad725a',
@@ -11,15 +12,9 @@ export const environment = {
     authDomain: 'comet-multimedia.firebaseapp.com',
     messagingSenderId: '394705205935',
   },
-  production: false,
-  firebaseConfig: {
-    apiKey: 'AIzaSyCwK0bzQIPnLpubR8h2U8EfA7n1Je6B5pk',
-    authDomain: 'comet-multimedia.firebaseapp.com',
-    projectId: 'comet-multimedia',
-    storageBucket: 'comet-multimedia.appspot.com',
-    messagingSenderId: '394705205935',
-    appId: '1:394705205935:web:698ba7b36b1a38a7ad725a',
-  },
+  rapidApiKey: '78a2e91349msh70971b6e99345a0p1ff485jsn39683e3ed02e',
+  rapidApiHost: 'youtube-v31.p.rapidapi.com',
+  baseUrl: 'https://youtube-v31.p.rapidapi.com',
 };
 
 /*

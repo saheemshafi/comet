@@ -1,12 +1,13 @@
 [
-  { "name": "Music", "icon": "" },
-  { "name": "Movies", "icon": "" },
-  { "name": "Gaming", "icon": "" },
-  { "name": "Education", "icon": "" },
-  { "name": "Health", "icon": "" },
-  { "name": "News", "icon": "" },
-  { "name": "Trending", "icon": "" },
-  { "name": "Sports", "icon": "" },
-  { "name": " Fashion and beauty", "icon": "" },
-  { "name": "Live", "icon": "" }
+  { "name": "General", "icon": "bx bx-home" },
+  { "name": "Music", "icon": "bx bx-music" },
+  { "name": "Movies", "icon": "bx bx-movie-play" },
+  { "name": "Gaming", "icon": "bx bx-game" },
+  { "name": "Education", "icon": "bx bx-book-bookmark" },
+  { "name": "Health", "icon": "bx bx-heart" },
+  { "name": "News", "icon": "bx bx-news" },
+  { "name": "Trending", "icon": "bx bx-trending-up" },
+  { "name": "Sports", "icon": "bx bx-cricket-ball" },
+  { "name": " Fashion and beauty", "icon": "bx bx-spa" },
+  { "name": "Live", "icon": "bx bx-station" }
 ]

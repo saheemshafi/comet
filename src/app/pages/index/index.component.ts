@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/interfaces/category';
+import { User } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { PageInfo } from 'src/app/interfaces/page-info';
 import { PageInfoService } from 'src/app/services/page-info.service';
 @Component({
@@ -9,9 +10,14 @@ import { PageInfoService } from 'src/app/services/page-info.service';
 })
 export class IndexComponent implements OnInit {
   pageInfos: PageInfo[] = [];
-  constructor(private pageInfoService: PageInfoService) {}
+  constructor(
+    private pageInfoService: PageInfoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    const user: User = JSON.parse(<string>localStorage.getItem('user'));
+    if (user) this.router.navigate(['/d']);
     this.pageInfoService
       .getInfo()
       .subscribe((pageInfos) => (this.pageInfos = pageInfos));
