@@ -1,5 +1,15 @@
-<section class="pt-6 pl-72">
-  <p class="text-white" *ngFor="let video of videos">
-    {{ video.snippet.title }}
-  </p>
+<section class="py-4 pt-4 sm:pt-8 sm:pr-8 sm:pl-8 lg:pl-72">
+  <div
+    class="mb-4 flex items-center space-x-4 border-b border-slate-800 px-6 py-3"
+  >
+    <h1 class="text-3xl font-semibold tracking-wide text-slate-300">
+      {{ category }}
+    </h1>
+  </div>
+  <div class="flex flex-wrap justify-center gap-6 lg:grid-cols-3 lg:gap-8">
+    <app-video-card
+      *ngFor="let video of videos"
+      [video]="video"
+    ></app-video-card>
+  </div>
 </section>
