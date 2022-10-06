@@ -7,9 +7,17 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VideosComponent } from './components/videos/videos.component';
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { VideoViewComponent } from './pages/video-view/video-view.component';
+import { VideosPageComponent } from './pages/videos-page/videos-page.component';
 
 @NgModule({
-  declarations: [UserComponent, SidebarComponent, VideosComponent, VideoCardComponent, VideoViewComponent],
+  declarations: [
+    UserComponent,
+    SidebarComponent,
+    VideosComponent,
+    VideoCardComponent,
+    VideoViewComponent,
+    VideosPageComponent,
+  ],
   imports: [CommonModule, UserRoutingModule],
 })
 export class UserModule {}

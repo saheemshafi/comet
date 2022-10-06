@@ -11,7 +11,7 @@ export class VideosService {
   constructor(private http: HttpClient) {}
   getVideos(query: string = 'General'): Observable<SearchApiResponse> {
     return this.http.get<SearchApiResponse>(
-      `${environment.baseUrl}/search?q=${query}&part=snippet&regionCode=IN&maxResults=50`,
+      `${environment.baseUrl}/search?q=${query}&part=snippet&maxResults=100`,
       { headers: getHeaders() }
     );
   }

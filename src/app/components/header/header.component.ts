@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,9 +11,11 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  search(e: Event): void {
+  search(form: NgForm): void {
+    if (form.invalid) return;
     this.router.navigate(['/d/search'], {
-      queryParams: { q: (<HTMLInputElement>e.target).value },
+      queryParams: { q: form.value.query },
     });
+    form.resetForm('');
   }
 }

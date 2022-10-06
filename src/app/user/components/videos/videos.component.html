@@ -1,15 +1,9 @@
-<section class="py-4 pt-4 sm:pt-8 sm:pr-8 sm:pl-8 lg:pl-72">
-  <div
-    class="mb-4 flex items-center space-x-4 border-b border-slate-800 px-6 py-3"
-  >
-    <h1 class="text-3xl font-semibold tracking-wide text-slate-300">
-      {{ category }}
-    </h1>
-  </div>
-  <div class="flex flex-wrap justify-center gap-6 lg:grid-cols-3 lg:gap-8">
+<div class="flex flex-wrap justify-center gap-6 lg:gap-8">
+  <ng-container *ngFor="let video of videos">
     <app-video-card
-      *ngFor="let video of videos"
+      *ngIf="video.id.videoId; else channelCard"
       [video]="video"
     ></app-video-card>
-  </div>
-</section>
+    <ng-template #channelCard>hello</ng-template>
+  </ng-container>
+</div>

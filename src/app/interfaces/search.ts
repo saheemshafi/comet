@@ -8,24 +8,40 @@ export interface SearchApiResponse {
 
 export interface Item {
   id: ID;
-  kind: string;
+  kind: ItemKind;
   snippet: Snippet;
 }
 
 export interface ID {
-  kind: string;
-  videoId: string;
+  channelId?: string;
+  kind: IDKind;
+  playlistId?: string;
+  videoId?: string;
+}
+
+export enum IDKind {
+  YoutubeChannel = 'youtube#channel',
+  YoutubePlaylist = 'youtube#playlist',
+  YoutubeVideo = 'youtube#video',
+}
+
+export enum ItemKind {
+  YoutubeSearchResult = 'youtube#searchResult',
 }
 
 export interface Snippet {
   channelId: string;
   channelTitle: string;
   description: string;
-  liveBroadcastContent: string;
+  liveBroadcastContent: LiveBroadcastContent;
   publishTime: Date;
   publishedAt: Date;
   thumbnails: Thumbnails;
   title: string;
+}
+
+export enum LiveBroadcastContent {
+  None = 'none',
 }
 
 export interface Thumbnails {
@@ -35,9 +51,9 @@ export interface Thumbnails {
 }
 
 export interface Default {
-  height: number;
+  height?: number;
   url: string;
-  width: number;
+  width?: number;
 }
 
 export interface PageInfo {
