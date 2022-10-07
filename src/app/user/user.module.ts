@@ -8,6 +8,8 @@ import { VideosComponent } from './components/videos/videos.component';
 import { VideoCardComponent } from './components/video-card/video-card.component';
 import { VideoViewComponent } from './pages/video-view/video-view.component';
 import { VideosPageComponent } from './pages/videos-page/videos-page.component';
+import { ChannelCardComponent } from './components/channel-card/channel-card.component';
+import { PlaylistCardComponent } from './components/playlist-card/playlist-card.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { VideosPageComponent } from './pages/videos-page/videos-page.component';
     VideoCardComponent,
     VideoViewComponent,
     VideosPageComponent,
+    ChannelCardComponent,
+    PlaylistCardComponent,
   ],
   imports: [CommonModule, UserRoutingModule],
 })

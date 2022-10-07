@@ -1,0 +1,38 @@
+<div
+  class="relative isolate flex h-72 min-w-[290px] max-w-[320px] flex-col items-center rounded-xl p-3"
+>
+  <div
+    class="group relative mt-3 h-[168px] max-h-[168px] min-w-[290px] max-w-[320px] flex-1 rounded-lg"
+  >
+    <a
+      [routerLink]="'/d/channel/' + channel.id.channelId"
+      class="mx-auto block h-40 w-40 rounded-full"
+    >
+      <img
+        class="mx-auto h-40 w-40 rounded-full"
+        [src]="
+          channel.snippet.thumbnails.medium.url ||
+          '../../../assets/images/1215608_72.jpg'
+        "
+        [alt]="channel.snippet.title"
+    /></a>
+  </div>
+  <div class="mt-2">
+    <div class="flex items-start px-2">
+      <div class="w-full text-center">
+        <p class="text-xs font-medium uppercase tracking-widest text-rose-500">
+          Channel
+        </p>
+        <p
+          class="text-center text-2xl font-medium tracking-normal text-slate-300 line-clamp-2"
+          [title]="channel.snippet.title"
+        >
+          <a
+            [routerLink]="'/d/channel/' + channel.id.channelId"
+            [innerHTML]="channel.snippet.title"
+          ></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
