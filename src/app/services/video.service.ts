@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -12,9 +12,13 @@ export class VideoService {
   constructor(private http: HttpClient) {}
 
   getVideo(videoId: string): Observable<VideoApiResponse> {
-    return this.http.get<VideoApiResponse>(
-      `${environment.baseUrl}/videos?part=snippet,statistics&id=${videoId}`,
-      { headers: getHeaders() }
-    );
+    const params = new HttpParams()
+      .append('part', 'snippet,statistics')
+      .append('id', videoId);
+
+    return this.http.get<VideoApiResponse>(`${environment.baseUrl}/videos`, {
+      headers: getHeaders(),
+      params: params,
+    });
   }
 }

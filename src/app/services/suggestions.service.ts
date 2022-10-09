@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,9 +11,15 @@ import { SearchApiResponse } from '../interfaces/search';
 export class SuggestionsService {
   constructor(private http: HttpClient) {}
   getVideos(videoId: string): Observable<SearchApiResponse> {
-    return this.http.get<SearchApiResponse>(
-      `${environment.baseUrl}/search?relatedToVideoId=${videoId}&type=video&part=snippet&maxResults=50`,
-      { headers: getHeaders() }
-    );
+    const params = new HttpParams()
+      .append('part', 'snippet')
+      .append('type', 'video')
+      .append('relatedToVideoId', videoId)
+      .append('maxResults', '100');
+
+    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
+      headers: getHeaders(),
+      params: params,
+    });
   }
 }

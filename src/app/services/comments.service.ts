@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,9 +11,14 @@ import { CommentsApiResponse } from '../interfaces/comments';
 export class CommentsService {
   constructor(private http: HttpClient) {}
   getComments(videoId: string): Observable<CommentsApiResponse> {
+    const params = new HttpParams()
+      .append('part', 'snippet')
+      .append('videoId', videoId)
+      .append('maxResults', '100');
+
     return this.http.get<CommentsApiResponse>(
-      `${environment.baseUrl}/commentThreads?part=snippet&videoId=${videoId}&maxResults=100`,
-      { headers: getHeaders() }
+      `${environment.baseUrl}/commentThreads`,
+      { headers: getHeaders(), params: params }
     );
   }
 }
