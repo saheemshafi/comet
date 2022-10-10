@@ -1,6 +1,6 @@
 <div class="flex flex-wrap justify-center gap-6 lg:gap-8">
   <ng-container *ngFor="let item of content">
-    <app-video-card *ngIf="item.id.videoId" [video]="item"></app-video-card>
+    <app-video-card *ngIf="item.id.videoId || isString(item.id)" [video]="item"></app-video-card>
     <app-channel-card
       *ngIf="item.id.channelId"
       [channel]="item"

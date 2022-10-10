@@ -6,6 +6,7 @@ import { VideoViewComponent } from './pages/video-view/video-view.component';
 import { VideosPageComponent } from './pages/videos-page/videos-page.component';
 import { UserComponent } from './user.component';
 import { ChannelPlaylistsComponent } from './pages/channel-playlists/channel-playlists.component';
+import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'search', component: VideosPageComponent },
       { path: 'videos/:category', component: VideosPageComponent },
       { path: 'video/:videoId', component: VideoViewComponent },
+      {path:'playlist/:playlistId',component:PlaylistPageComponent},
       {
         path: 'channel/:channelId',
         component: ChannelPageComponent,

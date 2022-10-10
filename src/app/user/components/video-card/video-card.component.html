@@ -5,7 +5,7 @@
     class="group relative h-[168px] max-h-[168px] min-w-[290px] max-w-[320px] flex-1 overflow-hidden rounded-lg"
   >
     <a
-      [routerLink]="'/d/video/' + video.id.videoId"
+      [routerLink]="'/d/video/' + (video.id.videoId || video.snippet.resourceId.videoId)"
       class="absolute inset-0 grid place-items-center rounded-lg bg-black/60 text-6xl text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
       ><i class="bx bx-play"></i
     ></a>

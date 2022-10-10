@@ -7,7 +7,7 @@ import { Item } from 'src/app/interfaces/search';
   styleUrls: ['./video-card.component.css'],
 })
 export class VideoCardComponent implements OnInit {
-  @Input() video!: Item;
+  @Input() video!: Item | any;
   constructor() {}
 
   ngOnInit(): void {}
