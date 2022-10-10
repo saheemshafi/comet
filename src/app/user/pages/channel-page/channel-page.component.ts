@@ -6,22 +6,23 @@ import { ChannelService } from 'src/app/services/channel.service';
 @Component({
   selector: 'app-channel-page',
   templateUrl: './channel-page.component.html',
-  styleUrls: ['./channel-page.component.css']
+  styleUrls: ['./channel-page.component.css'],
 })
 export class ChannelPageComponent implements OnInit {
-channelId:string = '';
-channel!:Channel
-  constructor(private channelSerive:ChannelService,private activatedRoute:ActivatedRoute) { }
+  channelId: string = '';
+  channel!: Channel;
+  constructor(
+    private channelSerive: ChannelService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(params=>{
+    this.activatedRoute.paramMap.subscribe((params) => {
       this.channelId = <string>params.get('channelId');
-      if(!this.channelId) return;
-      this.channelSerive.getChannel(this.channelId).subscribe(response=>{
+      if (!this.channelId) return;
+      this.channelSerive.getChannel(this.channelId).subscribe((response) => {
         this.channel = response.items[0];
-        console.log(response.items[0]);
-      })
-    })
+      });
+    });
   }
-
 }

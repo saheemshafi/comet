@@ -24,7 +24,6 @@ export class PlaylistPageComponent implements OnInit {
       if (!this.playlistId) return;
       this.playlistService.getPlaylistDetails(this.playlistId).subscribe(response=>{
         this.playlistDetails = response.items[0];
-        console.log(response.items[0])
       })
       this.playlistService
         .getPlaylistVideos(this.playlistId)

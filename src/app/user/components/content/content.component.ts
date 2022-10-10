@@ -10,9 +10,6 @@ export class ContentComponent implements OnInit {
   @Input() content: Item[] | any[] = [];
   constructor() {}
   ngOnInit(): void {}
-  ngOnChanges(){
-    console.log(this.content)
-  }
   isString(val:any):boolean{
     return typeof val === 'string';
   }

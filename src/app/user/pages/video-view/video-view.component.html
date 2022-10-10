@@ -1,5 +1,5 @@
 <section
-  class="grid px-2 py-2 sm:gap-4 sm:py-8 sm:px-8 md:grid-cols-3 lg:gap-8"
+  class="grid px-2 py-2 sm:gap-4 sm:py-8 sm:px-8 lg:grid-cols-3 lg:gap-8"
 >
   <div class="md:col-span-2">
     <div
@@ -10,7 +10,7 @@
           class="aspect-video w-full"
           [src]="
             sanitizer.bypassSecurityTrustResourceUrl(
-              'https://www.youtube.com/embed/' + videoId
+              'https://www.youtube-nocookie.com/embed/' + videoId
             )
           "
           title="YouTube video player"
@@ -120,7 +120,7 @@
     </div>
   </div>
   <div
-    class="relative isolate -mx-2 mt-4 overflow-hidden border border-slate-800 md:mx-0 md:mt-0 md:rounded-xl"
+    class="relative isolate -mx-2 mt-4 overflow-hidden md:mx-0 md:mt-0 md:rounded-xl"
   >
     <h3
       class="bg-red top-0 z-10 w-full bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
@@ -128,7 +128,7 @@
       Recommended Videos
     </h3>
     <div
-      class="recommendation overflow-y-auto pt-4 pb-4 shadow-inner shadow-slate-900"
+      class="recommendation overflow-y-auto pt-4 pb-4"
     >
       <app-content [content]="videos"></app-content>
     </div>

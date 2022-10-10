@@ -11,7 +11,5 @@ export class ChannelCardComponent implements OnInit {
   @Input() channel!: Item;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.channel);
-  }
+  ngOnInit(): void { }
 }
