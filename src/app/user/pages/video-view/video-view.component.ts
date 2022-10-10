@@ -18,6 +18,7 @@ export class VideoViewComponent implements OnInit {
   video!: Item;
   videos: Videos[] = [];
   comments: Comment[] = [];
+  isCommentsPopped:boolean = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private videoService: VideoService,

@@ -1,8 +1,9 @@
 <section
   class="grid px-2 py-2 sm:gap-4 sm:py-8 sm:px-8 lg:grid-cols-3 lg:gap-8"
 >
-  <div class="md:col-span-2">
-    <div #videoContainer
+  <div class="lg:col-span-2">
+    <div
+      #videoContainer
       class="-mx-2 -mt-2 bg-slate-800 px-0 pb-3 md:m-0 md:rounded-2xl md:p-3"
     >
       <div class="overflow-hidden md:rounded-xl">
@@ -29,50 +30,75 @@
                 [innerHTML]="video.snippet.title"
               ></p>
             </div>
-            <div>
-              <p
-                class="mt-2 flex items-center text-sm font-medium tracking-wide text-slate-400 line-clamp-1 hover:text-slate-300"
-                [title]="video.snippet.channelTitle"
-              >
-                <a [routerLink]="'/d/channel/' + video.snippet.channelId"
-                  >{{ video.snippet.channelTitle }}
-                  <i class="bx bxs-check-circle text-sm"></i
-                ></a>
-              </p>
-              <p class="mt-1 text-xs font-medium tracking-wide text-slate-400">
-                {{ video.snippet.publishedAt | date }}
-              </p>
+            <div class="flex justify-between">
+              <div>
+                <p
+                  class="mt-2 flex items-center text-sm font-medium tracking-wide text-slate-400 line-clamp-1 hover:text-slate-300"
+                  [title]="video.snippet.channelTitle"
+                >
+                  <a [routerLink]="'/d/channel/' + video.snippet.channelId"
+                    >{{ video.snippet.channelTitle }}
+                    <i class="bx bxs-check-circle text-sm"></i
+                  ></a>
+                </p>
+                <p
+                  class="mt-1 text-xs font-medium tracking-wide text-slate-400"
+                >
+                  {{ video.snippet.publishedAt | date }}
+                </p>
+              </div>
+              <div>
+                <button
+                  (click)="isCommentsPopped = true"
+                  [ngClass]="{ hidden: isCommentsPopped }"
+                  class="text-2xl mt-2 text-slate-500 hover:text-slate-400 lg:hidden"
+                >
+                <i class='bx bx-comment-detail'></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div
-    class="relative isolate -mx-2 mt-4 overflow-hidden md:mx-0 md:rounded-xl border border-slate-800"
-  >
-    <h3
-      class="bg-red top-0 z-10 w-full bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
-    >
-      Recommended Videos
-    </h3>
-    <div
-      class="recommendation overflow-y-auto pt-4 pb-4"
-    >
-      <app-content [content]="videos"></app-content>
-    </div>
-  </div>
-  </div>
-  <div>
-    <div
-      class="-mx-2 mt-8 md:mt-0 overflow-hidden border border-slate-800 md:mx-0 md:rounded-xl"
+      class="relative isolate -mx-2 mt-4 overflow-hidden border border-slate-800 md:mx-0 md:rounded-xl"
     >
       <h3
         class="bg-red top-0 z-10 w-full bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
       >
+        Recommended Videos
+      </h3>
+      <div class="recommendation overflow-y-auto pt-4 pb-4">
+        <app-content [content]="videos"></app-content>
+      </div>
+    </div>
+  </div>
+  <div
+    [ngClass]="{ hidden: !isCommentsPopped }"
+    class="fixed inset-0 block bg-black/80 lg:hidden"
+  ></div>
+  <div
+    [ngClass]="{ hidden: !isCommentsPopped }"
+    class="fixed left-1/2 w-[96%] sm:w-11/12 md:w-2/3 -translate-x-1/2 bg-slate-900 lg:static lg:left-0 lg:block lg:h-full lg:w-full lg:translate-x-0"
+  >
+    <div
+      class=" overflow-hidden border border-slate-800 md:mx-0 md:mt-0 md:rounded-xl"
+    >
+      <h3
+        class="flex w-full justify-between bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
+      >
         {{ comments.length }} Comments
+        <button
+          (click)="isCommentsPopped = false"
+          [ngClass]="{ hidden: !isCommentsPopped }"
+          class="text-4xl text-slate-500 hover:text-slate-400 lg:hidden"
+        >
+          <i class="bx bx-x"></i>
+        </button>
       </h3>
       <div
-        class="recommendation overflow-y-auto p-3 shadow-inner shadow-slate-900"
+        class="recommendation h-[400px] overflow-y-auto p-3 shadow-inner shadow-slate-900 lg:h-full"
       >
         <div
           class="my-4 flex items-start space-x-3 rounded-xl bg-slate-800 p-2"
@@ -83,9 +109,7 @@
               '/d/channel/' +
               comment.snippet.topLevelComment.snippet.authorChannelId.value
             "
-            [title]="
-              comment.snippet.topLevelComment.snippet.authorDisplayName
-            "
+            [title]="comment.snippet.topLevelComment.snippet.authorDisplayName"
             class="shrink-0 overflow-clip rounded-full"
           >
             <img
@@ -93,9 +117,7 @@
               [src]="
                 comment.snippet.topLevelComment.snippet.authorProfileImageUrl
               "
-              [alt]="
-                comment.snippet.topLevelComment.snippet.authorDisplayName
-              "
+              [alt]="comment.snippet.topLevelComment.snippet.authorDisplayName"
             />
           </a>
           <div>
@@ -115,14 +137,12 @@
                 >
               </p>
               <p class="text-xs font-normal tracking-wide text-slate-400">
-                {{
-                  comment.snippet.topLevelComment.snippet.publishedAt | date
-                }}
+                {{ comment.snippet.topLevelComment.snippet.publishedAt | date }}
               </p>
             </div>
             <div>
               <p
-                class="text-base font-normal text-slate-300 break-words"
+                class="break-words text-base font-normal text-slate-300"
                 [innerHTML]="
                   comment.snippet.topLevelComment.snippet.textOriginal
                 "
