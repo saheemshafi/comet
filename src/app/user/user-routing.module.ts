@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChannelContentComponent } from './pages/channel-content/channel-content.component';
+import { ChannelVideosComponent } from './pages/channel-videos/channel-videos.component';
 import { ChannelPageComponent } from './pages/channel-page/channel-page.component';
 import { VideoViewComponent } from './pages/video-view/video-view.component';
 import { VideosPageComponent } from './pages/videos-page/videos-page.component';
 import { UserComponent } from './user.component';
+import { ChannelPlaylistsComponent } from './pages/channel-playlists/channel-playlists.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,11 @@ const routes: Routes = [
           { path: '', redirectTo: 'uploads',pathMatch:'full' },
           {
             path: 'uploads',
-            component: ChannelContentComponent,
+            component: ChannelVideosComponent,
+          },
+          {
+            path: 'playlists',
+            component: ChannelPlaylistsComponent,
           },
         ],
       },

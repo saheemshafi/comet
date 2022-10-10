@@ -4,7 +4,7 @@ import { Item } from 'src/app/interfaces/search';
 import { VideosService } from 'src/app/services/videos.service';
 
 @Component({
-  selector: 'app-videos-page',
+  selector: 'app-content-page',
   templateUrl: './videos-page.component.html',
   styleUrls: ['./videos-page.component.css'],
 })

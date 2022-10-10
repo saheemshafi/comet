@@ -4,11 +4,11 @@ import { Item } from 'src/app/interfaces/search';
 import { ChannelService } from 'src/app/services/channel.service';
 
 @Component({
-  selector: 'app-channel-content',
-  templateUrl: './channel-content.component.html',
-  styleUrls: ['./channel-content.component.css'],
+  selector: 'app-channel-videos',
+  templateUrl: './channel-videos.component.html',
+  styleUrls: ['./channel-videos.component.css'],
 })
-export class ChannelContentComponent implements OnInit {
+export class ChannelVideosComponent implements OnInit {
   channelId: string = '';
   videos!: Item[];
   constructor(
