@@ -2,7 +2,7 @@
   class="grid px-2 py-2 sm:gap-4 sm:py-8 sm:px-8 lg:grid-cols-3 lg:gap-8"
 >
   <div class="md:col-span-2">
-    <div
+    <div #videoContainer
       class="-mx-2 -mt-2 bg-slate-800 px-0 pb-3 md:m-0 md:rounded-2xl md:p-3"
     >
       <div class="overflow-hidden md:rounded-xl">
@@ -47,80 +47,8 @@
         </div>
       </div>
     </div>
-    <div>
-      <div
-        class="relative isolate -mx-2 mt-8 overflow-hidden border border-slate-800 md:mx-0 md:rounded-xl"
-      >
-        <h3
-          class="bg-red top-0 z-10 w-full bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
-        >
-          {{ comments.length }} Comments
-        </h3>
-        <div
-          class="recommendation overflow-y-auto p-3 shadow-inner shadow-slate-900"
-        >
-          <div
-            class="my-4 flex items-start space-x-3 rounded-xl bg-slate-800 p-2"
-            *ngFor="let comment of comments"
-          >
-            <a
-              [href]="
-                '/d/channel/' +
-                comment.snippet.topLevelComment.snippet.authorChannelId.value
-              "
-              [title]="
-                comment.snippet.topLevelComment.snippet.authorDisplayName
-              "
-              class="shrink-0 overflow-clip rounded-full"
-            >
-              <img
-                class="h-10 w-10 rounded-full text-sm"
-                [src]="
-                  comment.snippet.topLevelComment.snippet.authorProfileImageUrl
-                "
-                [alt]="
-                  comment.snippet.topLevelComment.snippet.authorDisplayName
-                "
-              />
-            </a>
-            <div>
-              <div class="flex items-center space-x-2">
-                <p
-                  class="text-sm font-medium tracking-wide text-slate-300 hover:text-slate-200"
-                >
-                  <a
-                    [href]="
-                      '/d/channel/' +
-                      comment.snippet.topLevelComment.snippet.authorChannelId
-                        .value
-                    "
-                    >{{
-                      comment.snippet.topLevelComment.snippet.authorDisplayName
-                    }}</a
-                  >
-                </p>
-                <p class="text-xs font-normal tracking-wide text-slate-400">
-                  {{
-                    comment.snippet.topLevelComment.snippet.publishedAt | date
-                  }}
-                </p>
-              </div>
-              <div>
-                <p
-                  class="text-base font-normal text-slate-300"
-                  [innerHTML]="
-                    comment.snippet.topLevelComment.snippet.textOriginal
-                  "
-                ></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="relative isolate -mx-2 mt-4 overflow-hidden md:mx-0 md:mt-0 md:rounded-xl"
+    <div
+    class="relative isolate -mx-2 mt-4 overflow-hidden md:mx-0 md:rounded-xl border border-slate-800"
   >
     <h3
       class="bg-red top-0 z-10 w-full bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
@@ -131,6 +59,78 @@
       class="recommendation overflow-y-auto pt-4 pb-4"
     >
       <app-content [content]="videos"></app-content>
+    </div>
+  </div>
+  </div>
+  <div>
+    <div
+      class="-mx-2 mt-8 md:mt-0 overflow-hidden border border-slate-800 md:mx-0 md:rounded-xl"
+    >
+      <h3
+        class="bg-red top-0 z-10 w-full bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
+      >
+        {{ comments.length }} Comments
+      </h3>
+      <div
+        class="recommendation overflow-y-auto p-3 shadow-inner shadow-slate-900"
+      >
+        <div
+          class="my-4 flex items-start space-x-3 rounded-xl bg-slate-800 p-2"
+          *ngFor="let comment of comments"
+        >
+          <a
+            [href]="
+              '/d/channel/' +
+              comment.snippet.topLevelComment.snippet.authorChannelId.value
+            "
+            [title]="
+              comment.snippet.topLevelComment.snippet.authorDisplayName
+            "
+            class="shrink-0 overflow-clip rounded-full"
+          >
+            <img
+              class="h-10 w-10 rounded-full text-sm"
+              [src]="
+                comment.snippet.topLevelComment.snippet.authorProfileImageUrl
+              "
+              [alt]="
+                comment.snippet.topLevelComment.snippet.authorDisplayName
+              "
+            />
+          </a>
+          <div>
+            <div class="flex items-center space-x-2">
+              <p
+                class="text-sm font-medium tracking-wide text-slate-300 hover:text-slate-200"
+              >
+                <a
+                  [href]="
+                    '/d/channel/' +
+                    comment.snippet.topLevelComment.snippet.authorChannelId
+                      .value
+                  "
+                  >{{
+                    comment.snippet.topLevelComment.snippet.authorDisplayName
+                  }}</a
+                >
+              </p>
+              <p class="text-xs font-normal tracking-wide text-slate-400">
+                {{
+                  comment.snippet.topLevelComment.snippet.publishedAt | date
+                }}
+              </p>
+            </div>
+            <div>
+              <p
+                class="text-base font-normal text-slate-300 break-words"
+                [innerHTML]="
+                  comment.snippet.topLevelComment.snippet.textOriginal
+                "
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
