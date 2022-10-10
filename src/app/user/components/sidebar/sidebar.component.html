@@ -1,10 +1,16 @@
 <aside
-  class="w-70 fixed top-0 left-0 z-10 h-full -translate-x-full overflow-y-auto bg-slate-900 transition-transform duration-200 lg:translate-x-0"
+  [ngClass]="{ '-translate-x-full': sidebarService.isMenuClosed }"
+  class="w-70 lg:max-h-[calc(100vh - 80px)] fixed top-0 left-0 z-10 h-full -translate-x-full overflow-y-auto bg-slate-900 transition-transform duration-200 lg:top-[80px] lg:translate-x-0"
 >
   <h3
-    class="my-4 ml-4 border-b border-slate-700 pb-1 text-lg font-medium uppercase tracking-wider text-slate-400"
+    class="my-4 ml-4 flex justify-between border-b border-slate-700 pb-1 text-lg font-medium uppercase tracking-wider text-slate-400"
   >
     Categories
+    <button class="inline-flex lg:hidden" (click)="sidebarService.toggleMenu()">
+      <i
+        class="bx bx-x cursor-pointer align-middle text-3xl hover:text-slate-500"
+      ></i>
+    </button>
   </h3>
 
   <ul class="px-3">

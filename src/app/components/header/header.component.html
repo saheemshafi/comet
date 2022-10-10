@@ -1,13 +1,18 @@
 <header
   class="fixed z-10 w-full border-b border-slate-800 bg-slate-800 py-4 px-2 sm:px-8"
 >
-  <nav class="flex justify-between">
-    <a [routerLink]="''" class="inline-flex shrink-0 items-end"
-      ><img
-        class="mr-2 h-12 w-12"
-        src="../../../assets/images/comet.svg"
-        alt="comet"
-    /></a>
+  <nav class="flex justify-between items-center">
+    <div>
+      <button class="text-4xl lg:hidden text-slate-500 hover:text-slate-400" (click)="sidebarService.toggleMenu()">
+        <i class='bx bx-menu-alt-left'></i>
+      </button>
+      <a [routerLink]="''" class="shrink-0 items-end hidden md:inline-flex"
+        ><img
+          class="mr-2 h-12 w-12"
+          src="../../../assets/images/comet.svg"
+          alt="comet"
+      /></a>
+    </div>
     <form
       #form="ngForm"
       class="relative h-fit w-3/4 text-slate-500 md:w-1/3 lg:w-80"
