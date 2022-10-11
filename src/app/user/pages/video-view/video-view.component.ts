@@ -18,7 +18,9 @@ export class VideoViewComponent implements OnInit {
   video!: Item;
   videos: Videos[] = [];
   comments: Comment[] = [];
-  isCommentsPopped:boolean = false;
+  isCommentsPopped: boolean = false;
+  fetched: boolean = false;
+  nextPageToken: string = '';
   constructor(
     private activatedRoute: ActivatedRoute,
     private videoService: VideoService,
@@ -38,6 +40,8 @@ export class VideoViewComponent implements OnInit {
       this.recommendationService
         .getVideos(this.videoId)
         .subscribe((response) => {
+          this.fetched = true;
+          this.nextPageToken = response.nextPageToken;
           this.videos = response.items;
         });
 
@@ -45,5 +49,16 @@ export class VideoViewComponent implements OnInit {
         this.comments = response.items;
       });
     });
+  }
+
+  fetchNextPage() {
+    this.fetched = false;
+    this.recommendationService
+      .getNextPage(this.nextPageToken)
+      .subscribe((response) => {
+        this.fetched = true;
+        this.nextPageToken = response.nextPageToken;
+        this.videos = this.videos.concat(response.items);
+      });
   }
 }

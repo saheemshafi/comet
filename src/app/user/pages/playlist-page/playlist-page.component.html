@@ -1,5 +1,5 @@
 <section class="py-4 sm:px-8 sm:pt-8">
-  <section *ngIf="playlistDetails" class="flex justify-center mb-12">
+  <section *ngIf="playlistDetails" class="mb-12 flex justify-center">
     <div class="mt-2">
       <div class="flex items-start px-2">
         <div class="w-full text-center">
@@ -9,12 +9,12 @@
             Playlist
           </p>
           <p
-            class="text-center text-3xl sm:text-4xl leading-snug sm:leading-relaxed font-medium tracking-normal text-slate-300 line-clamp-2"
+            class="text-center text-3xl font-medium leading-snug tracking-normal text-slate-300 line-clamp-2 sm:text-4xl sm:leading-relaxed"
             [title]="playlistDetails.snippet.title"
             [innerHTML]="playlistDetails.snippet.title"
           ></p>
           <p
-            class="text-center my-3 text-base font-normal tracking-normal text-slate-500 line-clamp-4 md:line-clamp-none max-w-4xl"
+            class="my-3 max-w-4xl text-center text-base font-normal tracking-normal text-slate-500 line-clamp-4 md:line-clamp-none"
             [innerHTML]="playlistDetails.snippet.description"
             [title]="playlistDetails.snippet.description"
           ></p>
@@ -23,6 +23,11 @@
     </div>
   </section>
   <div>
-    <app-content *ngIf="videos" [content]="videos"></app-content>
+    <app-content
+      *ngIf="videos"
+      [content]="videos"
+      [fetched]="fetched"
+      (scrolled)="fetchNextPage()"
+    ></app-content>
   </div>
 </section>

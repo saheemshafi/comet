@@ -7,5 +7,5 @@
       {{ category || "Search : " + query }}
     </h1>
   </div>
-  <app-content [content]="videos"></app-content>
+  <app-content (scrolled)="fetchNextPage()" [fetched]="fetched" [content]="videos"></app-content>
 </section>

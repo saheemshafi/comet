@@ -13,6 +13,8 @@ export class PlaylistPageComponent implements OnInit {
   playlistId: string = '';
   playlistDetails!: PlaylistDetails;
   videos: Videos[] = [];
+  fetched: boolean = false;
+  nextPageToken: string = '';
   constructor(
     private playlistService: PlaylistService,
     private activatedRoute: ActivatedRoute
@@ -22,14 +24,32 @@ export class PlaylistPageComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.playlistId = <string>params.get('playlistId');
       if (!this.playlistId) return;
-      this.playlistService.getPlaylistDetails(this.playlistId).subscribe(response=>{
-        this.playlistDetails = response.items[0];
-      })
+      this.playlistService
+        .getPlaylistDetails(this.playlistId)
+        .subscribe((response) => {
+          this.playlistDetails = response.items[0];
+        });
       this.playlistService
         .getPlaylistVideos(this.playlistId)
         .subscribe((response) => {
+          this.fetched = true;
+          this.nextPageToken = response.nextPageToken;
           this.videos = response.items;
         });
     });
+  }
+
+  fetchNextPage() {
+    this.fetched = false;
+    this.playlistService
+      .getNextPage(this.nextPageToken)
+      .subscribe((response) => {
+        this.fetched = true;
+        if(!this.nextPageToken) return;
+        this.nextPageToken = response.nextPageToken
+          ? response.nextPageToken
+          : '';
+        this.videos = this.videos.concat(response.items);
+      });
   }
 }

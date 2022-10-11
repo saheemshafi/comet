@@ -8,12 +8,26 @@ import { SearchApiResponse } from '../interfaces/search';
   providedIn: 'root',
 })
 export class VideosService {
+  query: string = 'General';
   constructor(private http: HttpClient) {}
   getVideos(query: string = 'General'): Observable<SearchApiResponse> {
-    const params = new HttpParams()
+    this.query = query;
+    let params = new HttpParams()
       .append('part', 'snippet')
-      .append('q', query)
-      .append('maxResults', '100');
+      .append('q', this.query)
+      .append('maxResults', '26');
+
+    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
+      headers: getHeaders(),
+      params: params,
+    });
+  }
+  getNextPage(nextPageToken: string = ''): Observable<SearchApiResponse> {
+    let params = new HttpParams()
+      .append('part', 'snippet')
+      .append('q', this.query)
+      .append('maxResults', '26')
+      .append('pageToken', nextPageToken);
 
     return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
       headers: getHeaders(),

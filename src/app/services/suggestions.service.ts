@@ -9,13 +9,29 @@ import { SearchApiResponse } from '../interfaces/search';
   providedIn: 'root',
 })
 export class SuggestionsService {
+  videoId: string = '';
   constructor(private http: HttpClient) {}
   getVideos(videoId: string): Observable<SearchApiResponse> {
+    this.videoId = videoId;
     const params = new HttpParams()
       .append('part', 'snippet')
       .append('type', 'video')
-      .append('relatedToVideoId', videoId)
-      .append('maxResults', '100');
+      .append('relatedToVideoId', this.videoId)
+      .append('maxResults', '26');
+
+    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
+      headers: getHeaders(),
+      params: params,
+    });
+  }
+
+  getNextPage(nextPageToken: string = ''): Observable<SearchApiResponse> {
+    let params = new HttpParams()
+      .append('part', 'snippet')
+      .append('type', 'video')
+      .append('relatedToVideoId', this.videoId)
+      .append('maxResults', '26')
+      .append('pageToken', nextPageToken);
 
     return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
       headers: getHeaders(),

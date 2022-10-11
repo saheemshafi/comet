@@ -10,6 +10,7 @@ import { PlaylistItemsApiResponse } from '../interfaces/playlistItems';
   providedIn: 'root',
 })
 export class PlaylistService {
+  playlistId: string = '';
   constructor(private http: HttpClient) {}
 
   getPlaylistDetails(id: string): Observable<PlaylistDetailsApiResponse> {
@@ -25,10 +26,29 @@ export class PlaylistService {
   }
 
   getPlaylistVideos(id: string): Observable<PlaylistItemsApiResponse> {
+    this.playlistId = id;
     const params = new HttpParams()
       .append('part', 'snippet')
-      .append('playlistId', id)
-      .append('maxResults', '50');
+      .append('playlistId', this.playlistId)
+      .append('maxResults', '26');
+
+    return this.http.get<PlaylistItemsApiResponse>(
+      `${environment.baseUrl}/playlistItems`,
+      {
+        headers: getHeaders(),
+        params: params,
+      }
+    );
+  }
+
+  getNextPage(
+    nextPageToken: string = ''
+  ): Observable<PlaylistItemsApiResponse> {
+    let params = new HttpParams()
+      .append('part', 'snippet')
+      .append('playlistId', this.playlistId)
+      .append('pageToken', nextPageToken)
+      .append('maxResults', '26');
 
     return this.http.get<PlaylistItemsApiResponse>(
       `${environment.baseUrl}/playlistItems`,

@@ -14,6 +14,7 @@ import { ChannelPageComponent } from './pages/channel-page/channel-page.componen
 import { ChannelVideosComponent } from './pages/channel-videos/channel-videos.component';
 import { ChannelPlaylistsComponent } from './pages/channel-playlists/channel-playlists.component';
 import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,6 @@ import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.compo
     ChannelPlaylistsComponent,
     PlaylistPageComponent,
   ],
-  imports: [CommonModule, UserRoutingModule],
+  imports: [CommonModule, UserRoutingModule,InfiniteScrollModule],
 })
 export class UserModule {}

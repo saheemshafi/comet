@@ -70,7 +70,7 @@
         Recommended Videos
       </h3>
       <div class="recommendation overflow-y-auto pt-4 pb-4">
-        <app-content [content]="videos"></app-content>
+        <app-content [content]="videos" [fetched]="fetched" (scrolled)="fetchNextPage()"></app-content>
       </div>
     </div>
   </div>
