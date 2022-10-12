@@ -11,6 +11,8 @@ import { ChannelService } from 'src/app/services/channel.service';
 export class ChannelVideosComponent implements OnInit {
   channelId: string = '';
   videos!: Item[];
+  fetched:boolean = false;
+  nextPageToken:string = '';
   constructor(
     private channelSerive: ChannelService,
     private activatedRoute: ActivatedRoute
@@ -23,8 +25,20 @@ export class ChannelVideosComponent implements OnInit {
       this.channelSerive
         .getChannelVideos(this.channelId)
         .subscribe((response) => {
+          this.nextPageToken = response.nextPageToken;
+          this.fetched = true;
           this.videos = response.items;
         });
     });
+  }
+
+  fetchMoreVideos():void{
+    if(!this.nextPageToken) return;
+    this.fetched = false;
+    this.channelSerive.getMoreVideos(this.nextPageToken).subscribe(response=>{
+      this.nextPageToken = response.nextPageToken ? response.nextPageToken : '';
+      this.videos = this.videos.concat(response.items);
+      this.fetched = true;
+    })
   }
 }

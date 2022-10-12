@@ -52,12 +52,13 @@ export class VideoViewComponent implements OnInit {
   }
 
   fetchNextPage() {
+    if(!this.nextPageToken) return;
     this.fetched = false;
     this.recommendationService
       .getNextPage(this.nextPageToken)
       .subscribe((response) => {
         this.fetched = true;
-        this.nextPageToken = response.nextPageToken;
+        this.nextPageToken = response.nextPageToken ? response.nextPageToken : '';
         this.videos = this.videos.concat(response.items);
       });
   }

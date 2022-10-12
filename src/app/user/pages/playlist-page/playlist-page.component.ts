@@ -40,12 +40,13 @@ export class PlaylistPageComponent implements OnInit {
   }
 
   fetchNextPage() {
+    if (!this.nextPageToken) return;
     this.fetched = false;
     this.playlistService
       .getNextPage(this.nextPageToken)
       .subscribe((response) => {
         this.fetched = true;
-        if(!this.nextPageToken) return;
+
         this.nextPageToken = response.nextPageToken
           ? response.nextPageToken
           : '';

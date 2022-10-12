@@ -17,7 +17,7 @@ export class VideosPageComponent implements OnInit {
   category: string | null = 'Coding';
   query: string | null = null;
   nextPageToken?: string;
-  fetched:boolean = false;
+  fetched: boolean = false;
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.category = <string>params.get('category');
@@ -47,10 +47,11 @@ export class VideosPageComponent implements OnInit {
     );
   }
   fetchNextPage() {
+    if (!this.nextPageToken) return;
     this.fetched = false;
     this.videosService.getNextPage(this.nextPageToken).subscribe((response) => {
       this.fetched = true;
-      this.nextPageToken = response.nextPageToken;
+      this.nextPageToken = response.nextPageToken ? response.nextPageToken : '';
       this.videos = this.videos.concat(this.filterResponse(response.items));
     });
   }

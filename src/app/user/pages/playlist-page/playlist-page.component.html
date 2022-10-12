@@ -24,6 +24,7 @@
   </section>
   <div>
     <app-content
+      [fetched]="fetched"
       *ngIf="videos"
       [content]="videos"
       [fetched]="fetched"
