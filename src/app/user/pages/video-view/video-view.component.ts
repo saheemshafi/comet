@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/interfaces/video';
 import { Item as Videos } from 'src/app/interfaces/search';
 import { SuggestionsService } from 'src/app/services/suggestions.service';
@@ -26,7 +26,10 @@ export class VideoViewComponent implements OnInit {
     private videoService: VideoService,
     private recommendationService: SuggestionsService,
     private commentsSerive: CommentsService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private meta: Meta,
+    private title: Title,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +38,31 @@ export class VideoViewComponent implements OnInit {
       if (!this.videoId) return;
       this.videoService.getVideo(this.videoId).subscribe((response) => {
         this.video = response.items[0];
+        this.title.setTitle(this.video.snippet.title);
+        this.meta.updateTag({
+          name: 'description',
+          content: this.video.snippet.title,
+        });
+        this.meta.updateTag({
+          name: 'title',
+          content: this.video.snippet.title,
+        });
+        this.meta.updateTag({
+          property: 'og:image',
+          content: this.video.snippet.thumbnails.standard.url,
+        });
+        this.meta.updateTag({
+          property: 'og:image:secure_url',
+          content: this.video.snippet.thumbnails.standard.url,
+        });
+        this.meta.updateTag({
+          property: 'og:title',
+          content: this.video.snippet.title,
+        });
+        this.meta.updateTag({
+          property: 'og:url',
+          content: 'https://comet-multimedia.vercel.app' + this.router.url,
+        });
       });
 
       this.recommendationService
@@ -52,13 +80,15 @@ export class VideoViewComponent implements OnInit {
   }
 
   fetchNextPage() {
-    if(!this.nextPageToken) return;
+    if (!this.nextPageToken) return;
     this.fetched = false;
     this.recommendationService
       .getNextPage(this.nextPageToken)
       .subscribe((response) => {
         this.fetched = true;
-        this.nextPageToken = response.nextPageToken ? response.nextPageToken : '';
+        this.nextPageToken = response.nextPageToken
+          ? response.nextPageToken
+          : '';
         this.videos = this.videos.concat(response.items);
       });
   }

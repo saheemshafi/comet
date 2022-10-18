@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/interfaces/search';
 import { VideosService } from 'src/app/services/videos.service';
 
@@ -11,7 +12,10 @@ import { VideosService } from 'src/app/services/videos.service';
 export class VideosPageComponent implements OnInit {
   constructor(
     private videosService: VideosService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private title: Title,
+    private meta: Meta,
+    private router: Router
   ) {}
   videos: Item[] = [];
   category: string | null = 'Coding';
@@ -19,6 +23,26 @@ export class VideosPageComponent implements OnInit {
   nextPageToken?: string;
   fetched: boolean = false;
   ngOnInit(): void {
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Comet multimedia is a video streaming platform based on youtube api.Watch,search,browse and explore videos,channels and playlists and much more.',
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content:
+        'http://comet-multimedia.vercel.app/assets/images/comet-og-thumb.jpg',
+    });
+    this.meta.updateTag({
+      property: 'og:image:secure_url',
+      content:
+        'http://comet-multimedia.vercel.app/assets/images/comet-og-thumb.jpg',
+    });
+
+    this.meta.updateTag({
+      property: 'og:url',
+      content: 'https://comet-multimedia.vercel.app' + this.router.url,
+    });
     this.activatedRoute.paramMap.subscribe((params) => {
       this.category = <string>params.get('category');
       if (!this.category) return;
@@ -31,6 +55,15 @@ export class VideosPageComponent implements OnInit {
     });
   }
   getVideos(): void {
+    this.meta.updateTag({
+      property: 'og:title',
+      content: `Comet multimedia - ${this.category || this.query}`,
+    });
+    this.title.setTitle(`Comet multimedia - ${this.category || this.query}`);
+    this.meta.updateTag({
+      name: 'title',
+      content: `Comet multimedia - ${this.category || this.query}`,
+    });
     this.videosService
       .getVideos(<string>(this.category || this.query))
       .subscribe((response) => {
