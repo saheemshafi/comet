@@ -5,24 +5,26 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(private fireAuth: AngularFireAuth, private router: Router) {}
-  async canActivate(
+  canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Promise<boolean | UrlTree> {
-    const user = localStorage.getItem('user');
-    const isAuthenticated = user ? true : false;
-    if (!isAuthenticated) {
-      this.router.navigate(['/auth/login']);
-    }
-    return isAuthenticated;
+  ): Observable<boolean> {
+    return this.fireAuth.authState.pipe(
+      map((authState) => !!authState),
+      map((auth) => {
+        if (!auth) {
+          this.router.navigate(['/auth/login']);
+        }
+        return auth;
+      })
+    );
   }
 }

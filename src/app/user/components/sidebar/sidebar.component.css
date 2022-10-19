@@ -1,12 +1,12 @@
-aside::-webkit-scrollbar {
+ul::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-aside::-webkit-scrollbar-track {
+ul::-webkit-scrollbar-track {
   @apply bg-slate-800;
 }
 
-aside::-webkit-scrollbar-thumb {
+ul::-webkit-scrollbar-thumb {
   @apply rounded bg-slate-700 hover:bg-slate-600;
 }
