@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NavigationEnd, Router, Event } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 
 @Component({
@@ -10,7 +11,12 @@ import { SidebarService } from 'src/app/services/sidebar.service';
 })
 export class HeaderComponent implements OnInit {
   isHidden: boolean = false;
-  constructor(private router: Router, public sidebarService: SidebarService) {}
+  baseRoute: string = '';
+  constructor(
+    private router: Router,
+    public sidebarService: SidebarService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.router.events.subscribe((event: Event) => {
