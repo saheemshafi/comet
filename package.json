@@ -9,7 +9,7 @@
     "test": "ng test",
     "dev:ssr": "ng run comet:serve-ssr",
     "serve:ssr": "node dist/comet/server/main.js",
-    "build:ssr": "ng build && ng run comet:server && npm run serve:ssr",
+    "build:ssr": "ng build && ng run comet:server",
     "prerender": "ng run comet:prerender",
     "vercel-build": "npm run build:ssr"
   },
