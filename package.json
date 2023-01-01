@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run comet:serve-ssr",
-    "serve:ssr": "node dist/comet/server/main.js",
+    "serve:ssr": "node comet/server/main.js",
     "build:ssr": "ng build && ng run comet:server",
     "prerender": "ng run comet:prerender"
   },
