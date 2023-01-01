@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && ng run comet:server && node dist/comet/server/main.js",
+    "build": "ng build && ng run comet:server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run comet:serve-ssr",
