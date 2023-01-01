@@ -1,0 +1,43 @@
+<aside
+  [ngClass]="{ '-translate-x-full': sidebarService.isMenuClosed }"
+  class="w-70 lg:max-h-[calc(100vh - 80px)] fixed top-0 left-0 z-10 h-[100vh] -translate-x-full  bg-slate-900 transition-transform duration-200 lg:top-[80px] lg:translate-x-0"
+>
+  <h3
+    class="my-4 ml-4 flex justify-between border-b border-slate-700 pb-1 text-lg font-medium uppercase tracking-wider text-slate-400"
+  >
+    Categories
+    <button class="inline-flex lg:hidden" (click)="sidebarService.toggleMenu()">
+      <i
+        class="bx bx-x cursor-pointer align-middle text-3xl hover:text-slate-500"
+      ></i>
+    </button>
+  </h3>
+
+  <ul class="px-3 overflow-y-auto" style="height:calc(100vh - 150px) ;">
+    <li *ngFor="let category of categories" class="my-1">
+      <a
+        class="group flex items-center rounded-full px-5 py-3 text-base font-medium tracking-wide text-slate-300 transition-all duration-200 hover:border-rose-500 hover:bg-rose-500 hover:text-white"
+        [routerLink]="'/d/videos/' + category.name"
+        [routerLinkActive]="
+          'text-white bg-rose-500 [&_i]:text-white [&_span]:text-white'
+        "
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><i
+          class="mr-3 text-2xl text-rose-500 group-hover:text-white"
+          [class]="category.icon"
+        ></i
+        ><span>{{ category.name }}</span></a
+      >
+    </li>
+    <li class="my-1">
+      <button (click)="logout()"
+        class="group flex items-center rounded-full px-5 py-3 text-base font-medium tracking-wide text-slate-300 transition-all duration-200 hover:border-rose-500 hover:bg-rose-500 hover:text-white"
+      >
+        <i
+          class="bx bx-exit mr-3 text-2xl text-rose-500 group-hover:text-white"
+        ></i
+        ><span>Logout</span>
+      </button>
+    </li>
+  </ul>
+</aside>

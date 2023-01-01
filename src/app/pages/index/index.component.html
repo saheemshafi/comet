@@ -1,0 +1,70 @@
+<app-hero-section></app-hero-section>
+<section class="bg-blue-900/20 py-4 px-2 sm:px-8">
+  <div
+    class="mx-auto flex flex-col items-center justify-center space-y-8 lg:w-4/5 lg:flex-row lg:space-x-8 lg:space-y-0"
+  >
+    <div
+      class="flex h-32 w-64 shrink-0 flex-col justify-center rounded-lg border border-slate-800 px-4 py-8 transition-all duration-200 hover:border-blue-900/20 hover:bg-blue-900/30"
+    >
+      <img
+        src="../../../assets/images/rapid-api.svg"
+        alt="rapid-api"
+        class="mx-auto w-40"
+      />
+    </div>
+    <div
+      class="flex h-32 w-64 shrink-0 flex-col flex-wrap justify-center rounded-lg border border-slate-800 px-4 py-8 transition-all duration-200 hover:border-blue-900/20 hover:bg-blue-900/30"
+    >
+      <img
+        src="../../../assets/images/tailwind-css.svg"
+        alt="tailwind-css"
+        class="mx-auto w-20"
+      />
+    </div>
+    <div
+      class="flex h-32 w-64 shrink-0 flex-col flex-wrap justify-center rounded-lg border border-slate-800 px-4 py-8 transition-all duration-200 hover:border-blue-900/20 hover:bg-blue-900/30"
+    >
+      <img
+        src="../../../assets/images/angular.svg"
+        alt="angular"
+        class="mx-auto w-20"
+      />
+    </div>
+  </div>
+</section>
+<app-page-info
+  *ngFor="let pageInfo of pageInfos; let isOdd = odd"
+  [pageInfo]="pageInfo"
+  [isOdd]="isOdd"
+></app-page-info>
+<section class="py-8 px-2 sm:px-8">
+  <div
+    class="relative flex min-h-[20rem] flex-col items-center justify-center overflow-hidden rounded-xl border border-slate-800 bg-blue-900/5 p-5 px-4 sm:mx-10 sm:px-8"
+  >
+    <div
+      class="absolute hidden h-60 w-60 rounded-full bg-orange-500 blur-[100px] md:-left-52 md:block"
+    ></div>
+    <div
+      class="absolute hidden h-60 w-60 rounded-full bg-rose-500 blur-[100px] md:-right-52 md:block"
+    ></div>
+    <div class="relative flex flex-col items-center justify-center space-y-5">
+      <h1
+        class="leading-tighter mb-4 mt-8 text-center text-5xl font-bold text-white sm:text-5xl sm:tracking-wide md:mt-0 md:px-0 md:text-6xl"
+      >
+        Join the space <br class="block" />
+        <span
+          class="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text font-bold tracking-wide text-transparent"
+        >
+          absolutely free!</span
+        >
+      </h1>
+      <a
+        [routerLink]="'/auth'"
+        class="rounded-lg bg-gradient-to-r from-orange-500 to-rose-600 py-3 px-4 text-lg font-medium capitalize tracking-wider text-white shadow-sm transition-shadow hover:opacity-95 focus:shadow-xl focus:shadow-rose-500/20 active:opacity-90 sm:py-4 sm:px-6 sm:text-xl"
+      >
+        Get started
+      </a>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,50 @@
+<div
+  class="relative isolate flex h-72 min-w-[290px] max-w-[320px] flex-col rounded-xl bg-slate-800 p-3 transition-shadow hover:shadow-lg"
+>
+  <div
+    class="group relative h-[168px] max-h-[168px] min-w-[290px] max-w-[320px] flex-1 overflow-hidden rounded-lg"
+  >
+    <a
+      [routerLink]="'/d/video/' + (video.id.videoId || video.snippet.resourceId.videoId)"
+      class="absolute inset-0 grid place-items-center rounded-lg bg-black/60 text-6xl text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      ><i class="bx bx-play"></i
+    ></a>
+    <img
+      class="rounded-lg object-cover"
+      [src]="
+        video.snippet.thumbnails.medium.url ||
+        '../../../assets/images/comet.svg'
+      "
+      [width]="video.snippet.thumbnails.medium.width"
+      [height]="video.snippet.thumbnails.medium.height"
+      [alt]="video.snippet.title"
+    />
+  </div>
+  <div class="mt-2">
+    <div class="flex items-start px-2">
+      <div>
+        <p
+          class="text-base font-medium tracking-normal text-slate-300 line-clamp-2"
+          [title]="video.snippet.title"
+        >
+          <a
+            [routerLink]="'/d/video/' + video.id.videoId"
+            [innerHTML]="video.snippet.title"
+          ></a>
+        </p>
+        <p
+          class="mt-1 flex items-center text-xs font-medium tracking-wide text-slate-400 line-clamp-1 hover:text-slate-300"
+          [title]="video.snippet.channelTitle"
+        >
+          <a [routerLink]="'/d/channel/' + video.snippet.channelId"
+            >{{ video.snippet.channelTitle }}
+            <i class="bx bxs-check-circle text-sm"></i
+          ></a>
+        </p>
+        <p class="mt-1 text-xs font-medium tracking-wide text-slate-400">
+          {{ video.snippet.publishedAt | date }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

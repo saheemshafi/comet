@@ -1,0 +1,14 @@
+[
+  { "name": "Coding", "icon": "bx bx-code" },
+  { "name": "Angular", "icon": "bx bxl-angular" },
+  { "name": "Music", "icon": "bx bx-music" },
+  { "name": "Movies", "icon": "bx bx-movie-play" },
+  { "name": "Gaming", "icon": "bx bx-game" },
+  { "name": "Education", "icon": "bx bx-book-bookmark" },
+  { "name": "Health", "icon": "bx bx-heart" },
+  { "name": "News", "icon": "bx bx-news" },
+  { "name": "Trending", "icon": "bx bx-trending-up" },
+  { "name": "Sports", "icon": "bx bx-cricket-ball" },
+  { "name": "Fashion and beauty", "icon": "bx bx-spa" },
+  { "name": "Live", "icon": "bx bx-station" }
+]
