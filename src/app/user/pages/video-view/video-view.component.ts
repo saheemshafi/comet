@@ -63,7 +63,7 @@ export class VideoViewComponent implements OnInit {
           });
           this.meta.updateTag({
             property: 'og:url',
-            content: 'https://comet-multimedia.vercel.app' + this.router.url,
+            content: 'https://comet-multimedia.netlify.app' + this.router.url,
           });
         });
 

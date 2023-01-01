@@ -16,15 +16,16 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return this.fireAuth.authState.pipe(
-      map((authState) => !!authState),
-      map((auth) => {
-        if (!auth) {
-          this.router.navigate(['/auth/login']);
-        }
-        return auth;
-      })
-    );
+  ): boolean {
+    // return this.fireAuth.authState.pipe(
+    //   map((authState) => !!authState),
+    //   map((auth) => {
+    //     if (!auth) {
+    //       this.router.navigate(['/auth/login']);
+    //     }
+    //     return auth;
+    //   })
+    // );
+    return true;
   }
 }
