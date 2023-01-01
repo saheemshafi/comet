@@ -9,7 +9,7 @@
     "test": "ng test",
     "dev:ssr": "ng run comet:serve-ssr",
     "serve:ssr": "node dist/comet/server/main.js",
-    "build:ssr": "ng build && ng run comet:server",
+    "build:ssr": "ng build && ng run comet:server && node comet/server/main.js",
     "prerender": "ng run comet:prerender"
   },
   "private": true,
