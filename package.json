@@ -10,8 +10,7 @@
     "dev:ssr": "ng run comet:serve-ssr",
     "serve:ssr": "node dist/comet/server/main.js",
     "build:ssr": "ng build && ng run comet:server",
-    "prerender": "ng run comet:prerender",
-    "vercel-build": "npm run build:ssr"
+    "prerender": "ng run comet:prerender"
   },
   "private": true,
   "dependencies": {
