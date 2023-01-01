@@ -32,17 +32,17 @@ export class VideosPageComponent implements OnInit {
     this.meta.updateTag({
       property: 'og:image',
       content:
-        'http://comet-multimedia.vercel.app/assets/images/comet-og-thumb.jpg',
+        'http://comet-multimedia.netlify.app/assets/images/comet-og-thumb.jpg',
     });
     this.meta.updateTag({
       property: 'og:image:secure_url',
       content:
-        'http://comet-multimedia.vercel.app/assets/images/comet-og-thumb.jpg',
+        'http://comet-multimedia.netlify.app/assets/images/comet-og-thumb.jpg',
     });
 
     this.meta.updateTag({
       property: 'og:url',
-      content: 'https://comet-multimedia.vercel.app' + this.router.url,
+      content: 'https://comet-multimedia.netlify.app' + this.router.url,
     });
     if (AppComponent.isBrowser) {
       this.activatedRoute.paramMap.subscribe((params) => {
