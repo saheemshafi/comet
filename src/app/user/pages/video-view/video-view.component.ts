@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/interfaces/video';
@@ -8,6 +8,7 @@ import { VideoService } from 'src/app/services/video.service';
 import { CommentsService } from 'src/app/services/comments.service';
 import { Comment } from 'src/app/interfaces/comments';
 import { AppComponent } from 'src/app/app.component';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-video-view',
@@ -28,9 +29,9 @@ export class VideoViewComponent implements OnInit {
     private recommendationService: SuggestionsService,
     private commentsSerive: CommentsService,
     public sanitizer: DomSanitizer,
-    private meta: Meta,
-    private title: Title,
-    private router: Router
+    private router: Router,
+    private meta: SeoService,
+    private renderer:Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -40,31 +41,14 @@ export class VideoViewComponent implements OnInit {
         if (!this.videoId) return;
         this.videoService.getVideo(this.videoId).subscribe((response) => {
           this.video = response.items[0];
-          this.title.setTitle(this.video.snippet.title);
-          this.meta.updateTag({
-            name: 'description',
-            content: this.video.snippet.title,
-          });
-          this.meta.updateTag({
-            name: 'title',
-            content: this.video.snippet.title,
-          });
-          this.meta.updateTag({
-            property: 'og:image',
-            content: this.video.snippet.thumbnails.standard.url,
-          });
-          this.meta.updateTag({
-            property: 'og:image:secure_url',
-            content: this.video.snippet.thumbnails.standard.url,
-          });
-          this.meta.updateTag({
-            property: 'og:title',
-            content: this.video.snippet.title,
-          });
-          this.meta.updateTag({
-            property: 'og:url',
-            content: 'https://comet-multimedia.netlify.app' + this.router.url,
-          });
+          this.meta.updateMetaData(
+            this.renderer.selectRootElement('meta'),
+            this.video.snippet.title,
+            this.video.snippet.description,
+            `https://comet-multimedia.up.railway.app${this.router.url}`,
+            this.video.snippet.thumbnails.standard.url
+          );
+
         });
 
         this.recommendationService

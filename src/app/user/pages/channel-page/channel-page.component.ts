@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Channel } from 'src/app/interfaces/channel';
 import { ChannelService } from 'src/app/services/channel.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-channel-page',
@@ -16,9 +17,9 @@ export class ChannelPageComponent implements OnInit {
   constructor(
     private channelSerive: ChannelService,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
-    private router: Router
+    private meta: SeoService,
+    private router: Router,
+    private renderer:Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -28,31 +29,13 @@ export class ChannelPageComponent implements OnInit {
         if (!this.channelId) return;
         this.channelSerive.getChannel(this.channelId).subscribe((response) => {
           this.channel = response.items[0];
-          this.title.setTitle(this.channel.snippet.title);
-          this.meta.updateTag({
-            name: 'title',
-            content: this.channel.snippet.title,
-          });
-          this.meta.updateTag({
-            name: 'description',
-            content: this.channel.snippet.description,
-          });
-          this.meta.updateTag({
-            property: 'og:image',
-            content: this.channel.snippet.thumbnails.default.url,
-          });
-          this.meta.updateTag({
-            property: 'og:image:secure_url',
-            content: this.channel.snippet.thumbnails.default.url,
-          });
-          this.meta.updateTag({
-            property: 'og:title',
-            content: this.channel.snippet.title,
-          });
-          this.meta.updateTag({
-            property: 'og:url',
-            content: 'https://comet-multimedia.netlify.app' + this.router.url,
-          });
+          this.meta.updateMetaData(
+            this.renderer.selectRootElement('meta'),
+             this.channel.snippet.title,
+             this.channel.snippet.description,
+             `https://comet-multimedia.up.railway.app${this.router.url}`,
+             this.channel.snippet.thumbnails.default.url
+          );
         });
       });
     }

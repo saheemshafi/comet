@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { PlaylistDetails } from 'src/app/interfaces/playlist';
 import { Videos } from 'src/app/interfaces/playlistItems';
 import { PlaylistService } from 'src/app/services/playlist.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-playlist-page',
@@ -20,9 +21,9 @@ export class PlaylistPageComponent implements OnInit {
   constructor(
     private playlistService: PlaylistService,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
-    private router: Router
+    private router: Router,
+    private meta: SeoService,
+    private renderer:Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -34,31 +35,14 @@ export class PlaylistPageComponent implements OnInit {
           .getPlaylistDetails(this.playlistId)
           .subscribe((response) => {
             this.playlistDetails = response.items[0];
-            this.title.setTitle(this.playlistDetails.snippet.title);
-            this.meta.updateTag({
-              name: 'title',
-              content: this.playlistDetails.snippet.title,
-            });
-            this.meta.updateTag({
-              name: 'description',
-              content: this.playlistDetails.snippet.description,
-            });
-            this.meta.updateTag({
-              property: 'og:image',
-              content: this.playlistDetails.snippet.thumbnails.standard.url,
-            });
-            this.meta.updateTag({
-              property: 'og:image:secure_url',
-              content: this.playlistDetails.snippet.thumbnails.standard.url,
-            });
-            this.meta.updateTag({
-              property: 'og:title',
-              content: this.playlistDetails.snippet.title,
-            });
-            this.meta.updateTag({
-              property: 'og:url',
-              content: 'https://comet-multimedia.netlify.app' + this.router.url,
-            });
+
+            this.meta.updateMetaData(
+              this.renderer.selectRootElement('meta'),
+              this.playlistDetails.snippet.title,
+              this.playlistDetails.snippet.description,
+              `https://comet-multimedia.up.railway.app${this.router.url}`,
+              this.playlistDetails.snippet.thumbnails.standard.url
+            );
           });
         this.playlistService
           .getPlaylistVideos(this.playlistId)

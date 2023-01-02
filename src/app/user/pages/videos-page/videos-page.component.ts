@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Item } from 'src/app/interfaces/search';
+import { SeoService } from 'src/app/services/seo.service';
 import { VideosService } from 'src/app/services/videos.service';
 
 @Component({
@@ -14,9 +15,9 @@ export class VideosPageComponent implements OnInit {
   constructor(
     private videosService: VideosService,
     private activatedRoute: ActivatedRoute,
-    private title: Title,
-    private meta: Meta,
-    private router: Router
+    private meta: SeoService,
+    private router: Router,
+    private renderer:Renderer2
   ) {}
   videos: Item[] = [];
   category: string | null = 'Coding';
@@ -24,26 +25,6 @@ export class VideosPageComponent implements OnInit {
   nextPageToken?: string;
   fetched: boolean = false;
   ngOnInit(): void {
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'Comet multimedia is a video streaming platform based on youtube api.Watch,search,browse and explore videos,channels and playlists and much more.',
-    });
-    this.meta.updateTag({
-      property: 'og:image',
-      content:
-        'http://comet-multimedia.netlify.app/assets/images/comet-og-thumb.jpg',
-    });
-    this.meta.updateTag({
-      property: 'og:image:secure_url',
-      content:
-        'http://comet-multimedia.netlify.app/assets/images/comet-og-thumb.jpg',
-    });
-
-    this.meta.updateTag({
-      property: 'og:url',
-      content: 'https://comet-multimedia.netlify.app' + this.router.url,
-    });
     if (AppComponent.isBrowser) {
       this.activatedRoute.paramMap.subscribe((params) => {
         this.category = <string>params.get('category');
@@ -58,15 +39,14 @@ export class VideosPageComponent implements OnInit {
     }
   }
   getVideos(): void {
-    this.meta.updateTag({
-      property: 'og:title',
-      content: `Comet multimedia - ${this.category || this.query}`,
-    });
-    this.title.setTitle(`Comet multimedia - ${this.category || this.query}`);
-    this.meta.updateTag({
-      name: 'title',
-      content: `Comet multimedia - ${this.category || this.query}`,
-    });
+    this.meta.updateMetaData(
+      this.renderer.selectRootElement('meta'),
+      `Comet multimedia - ${this.category || this.query}`,
+      `Browse ${this.category || this.query} videos on Comet multimedia.`,
+      `https://comet-multimedia.up.railway.app${this.router.url}`,
+      'https://comet-multimedia.up.railway.app/assets/images/comet-og-thumb.jpg'
+    );
+    if(AppComponent.isBrowser)
     this.videosService
       .getVideos(<string>(this.category || this.query))
       .subscribe((response) => {
