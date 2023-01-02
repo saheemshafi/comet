@@ -1,0 +1,53 @@
+[
+  {
+    "info": ["Search and explore videos any time", "anywhere"],
+    "description": [
+      "Our fast search will never let you wait longer",
+      "just search and go."
+    ],
+    "emoji": "✔",
+    "image": "../../../assets/images/search.png"
+  },
+  {
+    "info": ["Watch Videos Or check the", "recommended ones"],
+    "description": [
+      "Our recommended videos are just what you are",
+      "Looking for."
+    ],
+    "emoji": "✔",
+    "image": "../../../assets/images/video.png"
+  },
+  {
+    "info": ["We remember everything", "you search"],
+    "description": [
+      "Get everything you searched recently so you can navigate",
+      "quicky."
+    ],
+    "emoji": "🔎",
+    "image": "../../../assets/images/puzzle.png"
+  },
+  {
+    "info": ["Playlists : we got them", "running"],
+    "description": [
+      "Make playlists according to your taste and start",
+      "binge watching."
+    ],
+    "emoji": "📻",
+    "image": "../../../assets/images/playlist.png"
+  },
+  {
+    "info": ["Navigate through categories", "with ease"],
+    "description": [
+      "Browse from more than 12 categories and choose",
+      "your favourite one."
+    ],
+    "emoji": "🌎",
+    "image": "",
+    "categories": [
+      { "name": "Music", "image": "../../../assets/images/musical-notes.png" },
+      { "name": "Gaming", "image": "../../../assets/images/game-console.png" },
+      { "name": "News", "image": "../../../assets/images/newspaper.png" },
+      { "name": "Live", "image": "../../../assets/images/live.png" }
+    ]
+  }
+]
