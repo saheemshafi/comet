@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: '', component: IndexComponent },
   {
     path: 'd',
-    canActivate: [AuthGuard],
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
