@@ -21,6 +21,8 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
+  server.use(require('prerender-node').set('prerenderToken', 'WuHv0I9IC5JRIMEyL3cu'));
+
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });

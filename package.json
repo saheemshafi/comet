@@ -28,6 +28,7 @@
     "boxicons": "^2.1.4",
     "express": "^4.15.2",
     "ngx-infinite-scroll": "^15.0.0",
+    "prerender-node": "^3.5.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
