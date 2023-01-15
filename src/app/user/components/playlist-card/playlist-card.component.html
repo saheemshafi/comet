@@ -5,7 +5,7 @@
     class="group relative h-[168px] max-h-[168px] min-w-[290px] max-w-[320px] flex-1 overflow-hidden rounded-lg"
   >
     <a
-      [routerLink]="'/d/playlist/' + playlist.id.playlistId"
+      [routerLink]="'/playlist/' + playlist.id.playlistId"
       class="absolute inset-0 grid place-items-center rounded-lg bg-black/60 text-6xl text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
       ><i class="bx bx-play"></i
     ></a>
@@ -31,7 +31,7 @@
           [title]="playlist.snippet.title"
         >
           <a
-            [routerLink]="'/d/playlist/' + playlist.id.playlistId"
+            [routerLink]="'/playlist/' + playlist.id.playlistId"
             [innerHTML]="playlist.snippet.title"
           ></a>
         </p>
@@ -39,7 +39,7 @@
           class="mt-1 flex items-center text-xs font-medium tracking-wide text-slate-400 line-clamp-1 hover:text-slate-300"
           [title]="playlist.snippet.channelTitle"
         >
-          <a [routerLink]="'/d/channel/' + playlist.snippet.channelId"
+          <a [routerLink]="'/channel/' + playlist.snippet.channelId"
             >{{ playlist.snippet.channelTitle }}
             <i class="bx bxs-check-circle text-sm"></i
           ></a>

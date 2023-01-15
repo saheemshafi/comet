@@ -36,7 +36,7 @@
                   class="mt-2 flex items-center text-sm font-medium tracking-wide text-slate-400 line-clamp-1 hover:text-slate-300"
                   [title]="video.snippet.channelTitle"
                 >
-                  <a [routerLink]="'/d/channel/' + video.snippet.channelId"
+                  <a [routerLink]="'/channel/' + video.snippet.channelId"
                     >{{ video.snippet.channelTitle }}
                     <i class="bx bxs-check-circle text-sm"></i
                   ></a>
@@ -106,7 +106,7 @@
         >
           <a
             [href]="
-              '/d/channel/' +
+              '/channel/' +
               comment.snippet.topLevelComment.snippet.authorChannelId.value
             "
             [title]="comment.snippet.topLevelComment.snippet.authorDisplayName"
@@ -127,7 +127,7 @@
               >
                 <a
                   [href]="
-                    '/d/channel/' +
+                    '/channel/' +
                     comment.snippet.topLevelComment.snippet.authorChannelId
                       .value
                   "

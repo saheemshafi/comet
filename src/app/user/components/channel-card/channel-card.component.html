@@ -5,7 +5,7 @@
     class="group relative mt-3 h-[168px] max-h-[168px] min-w-[290px] max-w-[320px] flex-1 rounded-lg"
   >
     <a
-      [routerLink]="'/d/channel/' + channel.id.channelId"
+      [routerLink]="'/channel/' + channel.id.channelId"
       class="mx-auto block h-40 w-40 rounded-full"
     >
       <img
@@ -28,7 +28,7 @@
           [title]="channel.snippet.title"
         >
           <a
-            [routerLink]="'/d/channel/' + channel.id.channelId"
+            [routerLink]="'/channel/' + channel.id.channelId"
             [innerHTML]="channel.snippet.title"
           ></a>
         </p>

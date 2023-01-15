@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   }
   search(form: NgForm): void {
     if (form.invalid) return;
-    this.router.navigate(['/d/search'], {
+    this.router.navigate(['/search'], {
       queryParams: { q: form.value.query },
     });
     form.resetForm('');
