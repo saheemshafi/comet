@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { Category } from 'src/app/interfaces/category';
-import { AuthService } from 'src/app/services/auth.service';
 import { CategoryInfoService } from 'src/app/services/category-info.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 
@@ -15,7 +14,6 @@ export class SidebarComponent implements OnInit {
   constructor(
     private categoryService: CategoryInfoService,
     public sidebarService: SidebarService,
-    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -24,8 +22,5 @@ export class SidebarComponent implements OnInit {
         this.categories = categories;
       });
     }
-  }
-  logout(): void {
-    this.authService.logout();
   }
 }

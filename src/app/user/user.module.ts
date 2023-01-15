@@ -18,8 +18,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
-    UserComponent,
     SidebarComponent,
+    UserComponent,
     ContentComponent,
     VideoCardComponent,
     VideoViewComponent,

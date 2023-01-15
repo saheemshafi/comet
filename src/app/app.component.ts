@@ -5,13 +5,12 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  static isBrowser:boolean = false;
-  constructor(@Inject(PLATFORM_ID) private platformId: any){
+  static isBrowser: boolean = false;
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
     AppComponent.isBrowser = isPlatformBrowser(this.platformId);
   }
   title = 'comet';
-  
 }

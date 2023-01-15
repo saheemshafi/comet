@@ -18,12 +18,12 @@ const routes: Routes = [
       { path: 'search', component: VideosPageComponent },
       { path: 'videos/:category', component: VideosPageComponent },
       { path: 'video/:videoId', component: VideoViewComponent },
-      {path:'playlist/:playlistId',component:PlaylistPageComponent},
+      { path: 'playlist/:playlistId', component: PlaylistPageComponent },
       {
         path: 'channel/:channelId',
         component: ChannelPageComponent,
         children: [
-          { path: '', redirectTo: 'uploads',pathMatch:'full' },
+          { path: '', redirectTo: 'uploads', pathMatch: 'full' },
           {
             path: 'uploads',
             component: ChannelVideosComponent,
