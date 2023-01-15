@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NavigationEnd, Router, Event } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { AuthService } from 'src/app/services/auth.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     public sidebarService: SidebarService,
-    public authService: AuthService
   ) {}
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@
         <i class="bx bx-menu-alt-left"></i>
       </button>
       <a
-        [routerLink]="(authService.isLoggedIn | async) ? '/d' : ''"
+        routerLink="/"
         [ngClass]="{ hidden: !isHidden }"
         class="shrink-0 items-end md:inline-flex"
         ><img
