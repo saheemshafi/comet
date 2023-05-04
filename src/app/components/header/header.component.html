@@ -20,39 +20,49 @@
           alt="comet"
       /></a>
     </div>
-    <form
-      #form="ngForm"
-      class="relative h-fit w-3/4 text-slate-500 md:w-1/3 lg:w-80"
-      (ngSubmit)="search(form)"
-    >
-      <label for="search" class="sr-only">Search</label>
-      <input
-        id="search"
-        class="w-full rounded-full border-slate-500 bg-transparent py-2 pl-4 text-slate-100 focus:border-slate-600 focus:bg-slate-800/25 focus:ring-2 focus:ring-blue-400/20"
-        type="text"
-        name="query"
-        ngModel
-        placeholder="Search..."
-      />
-      <button
-        type="submit"
-        class="absolute right-1 top-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-orange-500 to-rose-500 p-1.5 text-lg font-semibold text-white shadow-sm transition-shadow hover:opacity-95 focus:shadow-xl focus:shadow-rose-500/20 active:opacity-90"
+    <div class="flex">
+      <form
+        #form="ngForm"
+        class="relative h-fit w-3/4 text-slate-500 md:w-full lg:w-80"
+        (ngSubmit)="search(form)"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="h-6 w-6"
+        <label for="search" class="sr-only">Search</label>
+        <input
+          id="search"
+          class="w-full rounded-full border-slate-500 bg-transparent py-2 pl-4 text-slate-100 focus:border-slate-600 focus:bg-slate-800/25 focus:ring-2 focus:ring-blue-400/20"
+          type="text"
+          name="query"
+          ngModel
+          placeholder="Search..."
+        />
+        <button
+          type="submit"
+          class="absolute right-1 top-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-orange-500 to-rose-500 p-1.5 text-lg font-semibold text-white shadow-sm transition-shadow hover:opacity-95 focus:shadow-xl focus:shadow-rose-500/20 active:opacity-90"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </button>
+      </form>
+      <button
+        class="ml-4 w-12 rounded-lg bg-slate-700 text-gray-300 hover:text-white focus:text-white"
+        title="Translation Preference"
+      >
+        <i
+          class="bx bxs-conversation bx-flip-horizontal align-middle text-2xl"
+        ></i>
       </button>
-    </form>
+    </div>
   </nav>
 </header>

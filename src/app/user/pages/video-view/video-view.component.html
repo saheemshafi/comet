@@ -51,9 +51,9 @@
                 <button
                   (click)="isCommentsPopped = true"
                   [ngClass]="{ hidden: isCommentsPopped }"
-                  class="text-2xl mt-2 text-slate-500 hover:text-slate-400 lg:hidden"
+                  class="mt-2 text-2xl text-slate-500 hover:text-slate-400 lg:hidden"
                 >
-                <i class='bx bx-comment-detail'></i>
+                  <i class="bx bx-comment-detail"></i>
                 </button>
               </div>
             </div>
@@ -70,7 +70,11 @@
         Recommended Videos
       </h3>
       <div class="recommendation overflow-y-auto pt-4 pb-4">
-        <app-content [content]="videos" [fetched]="fetched" (scrolled)="fetchNextPage()"></app-content>
+        <app-content
+          [content]="videos"
+          [fetched]="fetched"
+          (scrolled)="fetchNextPage()"
+        ></app-content>
       </div>
     </div>
   </div>
@@ -80,10 +84,10 @@
   ></div>
   <div
     [ngClass]="{ hidden: !isCommentsPopped }"
-    class="fixed left-1/2 w-[96%] sm:w-11/12 md:w-2/3 -translate-x-1/2 bg-slate-900 lg:static lg:left-0 lg:block lg:h-full lg:w-full lg:translate-x-0"
+    class="fixed left-1/2 w-[96%] -translate-x-1/2 bg-slate-900 sm:w-11/12 md:w-2/3 lg:static lg:left-0 lg:block lg:h-full lg:w-full lg:translate-x-0"
   >
     <div
-      class=" overflow-hidden border border-slate-800 md:mx-0 md:mt-0 md:rounded-xl"
+      class="overflow-hidden border border-slate-800 md:mx-0 md:mt-0 md:rounded-xl"
     >
       <h3
         class="flex w-full justify-between bg-slate-800 p-2 text-lg font-medium text-white shadow-md shadow-slate-900 drop-shadow-lg"
@@ -141,13 +145,28 @@
                 {{ comment.snippet.topLevelComment.snippet.publishedAt | date }}
               </p>
             </div>
-            <div>
+            <div
+              #commentWrapper
+              *ngIf="
+                comment.snippet.topLevelComment.snippet
+                  .textDisplay as cmntToTranslate
+              "
+            >
               <p
-                class="break-words text-base font-normal text-slate-300 [&>a]:text-rose-500 [&>a:hover]:text-rose-400 [&>a]:font-medium"
+                class="break-words text-base font-normal text-slate-300 [&>a]:font-medium [&>a]:text-rose-500 [&>a:hover]:text-rose-400"
                 [innerHTML]="
                   comment.snippet.topLevelComment.snippet.textDisplay
                 "
               ></p>
+              <span
+                ><button
+                  class="text-gray-400 text-small font-medium mt-2"
+                  translate="yes"
+                  (click)="translate(cmntToTranslate, commentWrapper)"
+                >
+                  Translate
+                </button></span
+              >
             </div>
           </div>
         </div>
