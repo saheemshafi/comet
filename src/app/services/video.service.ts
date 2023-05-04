@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { getHeaders } from '../headers/headers';
+import { getYTHeaders } from '../headers/headers';
 import { VideoApiResponse } from '../interfaces/video';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class VideoService {
       .append('part', 'snippet,statistics')
       .append('id', videoId);
 
-    return this.http.get<VideoApiResponse>(`${environment.baseUrl}/videos`, {
-      headers: getHeaders(),
+    return this.http.get<VideoApiResponse>(`${environment.YTbaseUrl}/videos`, {
+      headers: getYTHeaders(),
       params: params,
     });
   }

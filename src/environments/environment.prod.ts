@@ -9,6 +9,7 @@ export const environment = {
     messagingSenderId: '394705205935',
   },
   rapidApiKey: '78a2e91349msh70971b6e99345a0p1ff485jsn39683e3ed02e',
-  rapidApiHost: 'youtube-v31.p.rapidapi.com',
-  baseUrl: 'https://youtube-v31.p.rapidapi.com',
+  rapidApiYTHost: 'youtube-v31.p.rapidapi.com',
+  YTbaseUrl: 'https://youtube-v31.p.rapidapi.com',
+  rapidApiTranslationHost:'google-translate1.p.rapidapi.com'
 };
