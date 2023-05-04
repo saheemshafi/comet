@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { getHeaders } from '../headers/headers';
+import { getYTHeaders } from '../headers/headers';
 import { ChannelApiResponse } from '../interfaces/channel';
 import { SearchApiResponse } from '../interfaces/search';
 
@@ -18,8 +18,8 @@ export class ChannelService {
       .append('id', id);
 
     return this.http.get<ChannelApiResponse>(
-      `${environment.baseUrl}/channels`,
-      { headers: getHeaders(), params: params }
+      `${environment.YTbaseUrl}/channels`,
+      { headers: getYTHeaders(), params: params }
     );
   }
   getChannelVideos(id: string): Observable<SearchApiResponse> {
@@ -31,8 +31,8 @@ export class ChannelService {
       .append('maxResults', '50')
       .append('type', 'video');
 
-    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
-      headers: getHeaders(),
+    return this.http.get<SearchApiResponse>(`${environment.YTbaseUrl}/search`, {
+      headers: getYTHeaders(),
       params: params,
     });
   }
@@ -46,8 +46,8 @@ export class ChannelService {
       .append('pageToken', nextPageToken)
       .append('type', 'video');
 
-    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
-      headers: getHeaders(),
+    return this.http.get<SearchApiResponse>(`${environment.YTbaseUrl}/search`, {
+      headers: getYTHeaders(),
       params: params,
     });
   }
@@ -60,8 +60,8 @@ export class ChannelService {
       .append('maxResults', '50')
       .append('type', 'playlist');
 
-    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
-      headers: getHeaders(),
+    return this.http.get<SearchApiResponse>(`${environment.YTbaseUrl}/search`, {
+      headers: getYTHeaders(),
       params: params,
     });
   }

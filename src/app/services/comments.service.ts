@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { getHeaders } from '../headers/headers';
+import { getYTHeaders } from '../headers/headers';
 import { CommentsApiResponse } from '../interfaces/comments';
 
 @Injectable({
@@ -17,9 +17,9 @@ export class CommentsService {
       .append('maxResults', '100');
 
     return this.http.get<CommentsApiResponse>(
-      `${environment.baseUrl}/commentThreads`,
+      `${environment.YTbaseUrl}/commentThreads`,
       {
-        headers: getHeaders(),
+        headers: getYTHeaders(),
         params: params,
       }
     );

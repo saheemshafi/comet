@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { getHeaders } from '../headers/headers';
+import { getYTHeaders } from '../headers/headers';
 import { SearchApiResponse } from '../interfaces/search';
 
 @Injectable({
@@ -19,8 +19,8 @@ export class SuggestionsService {
       .append('relatedToVideoId', this.videoId)
       .append('maxResults', '26');
 
-    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
-      headers: getHeaders(),
+    return this.http.get<SearchApiResponse>(`${environment.YTbaseUrl}/search`, {
+      headers: getYTHeaders(),
       params: params,
     });
   }
@@ -33,8 +33,8 @@ export class SuggestionsService {
       .append('maxResults', '26')
       .append('pageToken', nextPageToken);
 
-    return this.http.get<SearchApiResponse>(`${environment.baseUrl}/search`, {
-      headers: getHeaders(),
+    return this.http.get<SearchApiResponse>(`${environment.YTbaseUrl}/search`, {
+      headers: getYTHeaders(),
       params: params,
     });
   }
