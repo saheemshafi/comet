@@ -11,5 +11,6 @@ export const environment = {
   rapidApiKey: '78a2e91349msh70971b6e99345a0p1ff485jsn39683e3ed02e',
   rapidApiYTHost: 'youtube-v31.p.rapidapi.com',
   YTbaseUrl: 'https://youtube-v31.p.rapidapi.com',
-  rapidApiTranslationHost:'google-translate1.p.rapidapi.com'
+  rapidApiTranslationHost:'google-translate1.p.rapidapi.com',
+  translationBaseUrl:'https://google-translate1.p.rapidapi.com/language/translate/v2'
 };

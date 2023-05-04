@@ -9,6 +9,7 @@ import { CommentsService } from 'src/app/services/comments.service';
 import { Comment } from 'src/app/interfaces/comments';
 import { AppComponent } from 'src/app/app.component';
 import { SeoService } from 'src/app/services/seo.service';
+import { TranslationService } from 'src/app/services/translation.service';
 
 @Component({
   selector: 'app-video-view',
@@ -31,7 +32,8 @@ export class VideoViewComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private router: Router,
     private meta: SeoService,
-    private renderer:Renderer2
+    private renderer: Renderer2,
+    private langService: TranslationService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,6 @@ export class VideoViewComponent implements OnInit {
             `https://comet-multimedia.up.railway.app${this.router.url}`,
             this.video.snippet.thumbnails.standard.url
           );
-
         });
 
         this.recommendationService
@@ -78,5 +79,16 @@ export class VideoViewComponent implements OnInit {
           : '';
         this.videos = this.videos.concat(response.items);
       });
+  }
+
+  translate(comment: string, commentWrapper: HTMLDivElement) {
+    this.langService.translate(comment).subscribe({
+      next: (t) => {
+        commentWrapper.children[0].innerHTML = t.translatedText;
+      },
+      error: (err) => {
+        // alert("Sorry not able to translate")
+      },
+    });
   }
 }
