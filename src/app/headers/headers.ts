@@ -13,7 +13,6 @@ export const getTranslationHeaders = () => {
   headers = headers
     .set('X-RapidAPI-Key', environment.rapidApiKey)
     .set('X-RapidAPI-Host', environment.rapidApiTranslationHost)
-    .set('content-type', 'application/x-www-form-urlencoded')
-    .set('Accept-Encoding', 'application/gzip');
+    .set('content-type', 'application/x-www-form-urlencoded');
   return headers;
 };
