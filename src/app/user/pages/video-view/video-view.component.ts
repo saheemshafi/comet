@@ -81,13 +81,23 @@ export class VideoViewComponent implements OnInit {
       });
   }
 
-  translate(comment: string, commentWrapper: HTMLDivElement) {
+  translate(
+    e: Event,
+    comment: string,
+    commentWrapper: HTMLDivElement,
+  ) {
+    (e.target as HTMLButtonElement).insertAdjacentHTML(
+      'afterbegin',
+      `<i class="bx bx-loader-alt bx-spin bx-rotate-90 hidden"></i>`
+    );
     this.langService.translate(comment).subscribe({
       next: (t) => {
-        commentWrapper.children[0].innerHTML = t.translatedText;
+        commentWrapper.children[0].innerHTML = t.translated_text;
+        (e.target as HTMLButtonElement).children[0].remove();
       },
       error: (err) => {
-        // alert("Sorry not able to translate")
+        alert('Sorry not able to translate');
+        (e.target as HTMLButtonElement).children[0].remove();
       },
     });
   }
