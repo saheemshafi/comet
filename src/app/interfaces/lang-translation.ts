@@ -1,12 +1,10 @@
-export interface RootTranslation {
-    data: Data;
-   }
-   
-   export interface Data {
-    translations: Translation[];
-   }
-   
-   export interface Translation {
-    translatedText: string;
-   }
-   
+export interface LanguageCode{
+  code:string;
+  name:string;
+}
+
+export interface Translation {
+  ok: boolean;
+  text_lang: string;
+  translated_text: string;
+}
