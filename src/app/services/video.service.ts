@@ -10,8 +10,8 @@ import { VideoApiResponse } from '../interfaces/video';
 })
 export class VideoService {
   constructor(private http: HttpClient) {}
-  isMiniplayerOpen: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  miniplayerVideoId: BehaviorSubject<string> = new BehaviorSubject('Vbgm_0goSGI');
+  isMiniplayerOpen: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  miniplayerVideoId: BehaviorSubject<string> = new BehaviorSubject('');
   initializeMiniplayer(videoId:string) {
     if (!this.isMiniplayerOpen.getValue()) {
       this.miniplayerVideoId.next(videoId);
