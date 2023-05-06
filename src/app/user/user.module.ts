@@ -15,6 +15,7 @@ import { ChannelVideosComponent } from './pages/channel-videos/channel-videos.co
 import { ChannelPlaylistsComponent } from './pages/channel-playlists/channel-playlists.component';
 import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { MiniPlayerComponent } from './components/mini-player/mini-player.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ChannelVideosComponent,
     ChannelPlaylistsComponent,
     PlaylistPageComponent,
+    MiniPlayerComponent,
   ],
   imports: [CommonModule, UserRoutingModule,InfiniteScrollModule],
 })

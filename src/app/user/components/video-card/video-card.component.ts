@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Item } from 'src/app/interfaces/search';
+import { VideoService } from 'src/app/services/video.service';
 
 @Component({
   selector: 'app-video-card',
@@ -8,7 +9,12 @@ import { Item } from 'src/app/interfaces/search';
 })
 export class VideoCardComponent implements OnInit {
   @Input() video!: Item | any;
-  constructor() {}
+  constructor(private videoService: VideoService) {}
 
   ngOnInit(): void {}
+  openInMiniplayer(): void {
+    this.videoService.initializeMiniplayer(
+      this.video.id.videoId || this.video.snippet.resourceId.videoId
+    );
+  }
 }
