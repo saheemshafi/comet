@@ -84,6 +84,60 @@
             "styles": ["src/styles.css"],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/comet/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "comet:build:development",
+              "serverTarget": "comet:server:development"
+            },
+            "production": {
+              "browserTarget": "comet:build:production",
+              "serverTarget": "comet:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "comet:build:production",
+              "serverTarget": "comet:server:production"
+            },
+            "development": {
+              "browserTarget": "comet:build:development",
+              "serverTarget": "comet:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

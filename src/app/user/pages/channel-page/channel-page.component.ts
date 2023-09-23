@@ -18,26 +18,22 @@ export class ChannelPageComponent implements OnInit {
     private channelSerive: ChannelService,
     private activatedRoute: ActivatedRoute,
     private meta: SeoService,
-    private router: Router,
-    private renderer:Renderer2
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (AppComponent.isBrowser) {
-      this.activatedRoute.paramMap.subscribe((params) => {
-        this.channelId = <string>params.get('channelId');
-        if (!this.channelId) return;
-        this.channelSerive.getChannel(this.channelId).subscribe((response) => {
-          this.channel = response.items[0];
-          this.meta.updateMetaData(
-            this.renderer.selectRootElement('meta'),
-             this.channel.snippet.title,
-             this.channel.snippet.description,
-             `https://comet-multimedia.up.railway.app${this.router.url}`,
-             this.channel.snippet.thumbnails.default.url
-          );
-        });
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.channelId = <string>params.get('channelId');
+      if (!this.channelId) return;
+      this.channelSerive.getChannel(this.channelId).subscribe((response) => {
+        this.channel = response.items[0];
+        this.meta.updateMetaData(
+          this.channel.snippet.title,
+          this.channel.snippet.description,
+          `https://comet-multimedia.up.railway.app${this.router.url}`,
+          this.channel.snippet.thumbnails.default.url
+        );
       });
-    }
+    });
   }
 }

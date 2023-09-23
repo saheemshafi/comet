@@ -1,8 +1,12 @@
 ## Use Node Slim image
-FROM node:14-slim
+FROM node:20-slim
 
+WORKDIR /comet
 ## Copy source code
+COPY package*.json .
+RUN npm install
 COPY . .
-
+RUN npm run build:ssr
 ## Start the application
-CMD ["node", "dist/comet/server/main.js"]
+CMD ["npm", "run","serve:ssr"]
+EXPOSE 4000

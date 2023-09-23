@@ -17,10 +17,8 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (AppComponent.isBrowser) {
       this.categoryService.getCategories().subscribe((categories) => {
         this.categories = categories;
       });
     }
   }
-}

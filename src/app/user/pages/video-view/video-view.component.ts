@@ -32,39 +32,35 @@ export class VideoViewComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private router: Router,
     private meta: SeoService,
-    private renderer: Renderer2,
     private langService: TranslationService
   ) {}
 
   ngOnInit(): void {
-    if (AppComponent.isBrowser) {
-      this.activatedRoute.paramMap.subscribe((params) => {
-        this.videoId = <string>params.get('videoId');
-        if (!this.videoId) return;
-        this.videoService.getVideo(this.videoId).subscribe((response) => {
-          this.video = response.items[0];
-          this.meta.updateMetaData(
-            this.renderer.selectRootElement('meta'),
-            this.video.snippet.title,
-            this.video.snippet.description,
-            `https://comet-multimedia.up.railway.app${this.router.url}`,
-            this.video.snippet.thumbnails.standard.url
-          );
-        });
-
-        this.recommendationService
-          .getVideos(this.videoId)
-          .subscribe((response) => {
-            this.fetched = true;
-            this.nextPageToken = response.nextPageToken;
-            this.videos = response.items;
-          });
-
-        this.commentsSerive.getComments(this.videoId).subscribe((response) => {
-          this.comments = response.items;
-        });
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.videoId = <string>params.get('videoId');
+      if (!this.videoId) return;
+      this.videoService.getVideo(this.videoId).subscribe((response) => {
+        this.video = response.items[0];
+        this.meta.updateMetaData(
+          this.video.snippet.title,
+          this.video.snippet.description,
+          `https://comet-multimedia.up.railway.app${this.router.url}`,
+          this.video.snippet.thumbnails.standard.url
+        );
       });
-    }
+
+      this.recommendationService
+        .getVideos(this.videoId)
+        .subscribe((response) => {
+          this.fetched = true;
+          this.nextPageToken = response.nextPageToken;
+          this.videos = response.items;
+        });
+
+      this.commentsSerive.getComments(this.videoId).subscribe((response) => {
+        this.comments = response.items;
+      });
+    });
   }
 
   fetchNextPage() {
@@ -81,11 +77,7 @@ export class VideoViewComponent implements OnInit {
       });
   }
 
-  translate(
-    e: Event,
-    comment: string,
-    commentWrapper: HTMLDivElement,
-  ) {
+  translate(e: Event, comment: string, commentWrapper: HTMLDivElement) {
     (e.target as HTMLButtonElement).insertAdjacentHTML(
       'afterbegin',
       `<i class="bx bx-loader-alt bx-spin bx-rotate-90 hidden"></i>`

@@ -20,19 +20,17 @@ export class ChannelVideosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (AppComponent.isBrowser) {
-      this.activatedRoute.parent?.paramMap.subscribe((params) => {
-        this.channelId = <string>params.get('channelId');
-        if (this.channelId === '') return;
-        this.channelSerive
-          .getChannelVideos(this.channelId)
-          .subscribe((response) => {
-            this.nextPageToken = response.nextPageToken;
-            this.fetched = true;
-            this.videos = response.items;
-          });
-      });
-    }
+    this.activatedRoute.parent?.paramMap.subscribe((params) => {
+      this.channelId = <string>params.get('channelId');
+      if (this.channelId === '') return;
+      this.channelSerive
+        .getChannelVideos(this.channelId)
+        .subscribe((response) => {
+          this.nextPageToken = response.nextPageToken;
+          this.fetched = true;
+          this.videos = response.items;
+        });
+    });
   }
 
   fetchMoreVideos(): void {

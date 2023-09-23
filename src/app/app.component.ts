@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,5 +11,4 @@ export class AppComponent {
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     AppComponent.isBrowser = isPlatformBrowser(this.platformId);
   }
-  title = 'comet';
 }

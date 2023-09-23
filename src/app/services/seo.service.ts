@@ -1,39 +1,51 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, Renderer2 } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SeoService {
-  constructor() {
-    
-  }
+  constructor(private documentTitle: Title, private meta: Meta) {}
 
   updateMetaData(
-    metaTags:HTMLMetaElement[],
     title: string,
     description: string,
     url: string,
-    image:string
+    image: string
   ): void {
-    document.title = title;
-    if(Array.isArray(metaTags))
-    metaTags.forEach((metaTag) => {
-      switch (metaTag.name || metaTag.getAttribute('property')) {
-        case 'title' || 'og:title':
-          metaTag.content = title;
-          break;
-        case 'description' || 'og:description':
-          metaTag.content = description;
-          break;
-        case 'og:url':
-          metaTag.content = url;
-          break;
-        case 'og:image' || 'og:image:secure_url':
-          metaTag.content = image;
-          break;
-      }
-      console.log(metaTag.content)
+    this.documentTitle.setTitle(title);
+    this.meta.updateTag({
+      name: 'title',
+      content: title,
+    });
+    this.meta.updateTag({
+      name: 'description',
+      content: description,
+    });
+    this.meta.updateTag({
+      name: 'description',
+      content: description,
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: title,
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content: title,
+    });
+    this.meta.updateTag({
+      property: 'og:url',
+      content: url,
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content: image,
+    });
+    this.meta.updateTag({
+      property: 'og:image:secure_url',
+      content: image,
     });
   }
 }
