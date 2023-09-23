@@ -13,9 +13,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      initialNavigation: 'enabledBlocking',
-      scrollPositionRestoration: 'enabled',
-    }),
+    scrollPositionRestoration: 'enabled',
+    initialNavigation: 'enabledBlocking'
+}),
   ],
   exports: [RouterModule],
 })

@@ -17,7 +17,7 @@ export class VideosPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private meta: SeoService,
     private router: Router,
-    private renderer:Renderer2
+    private renderer: Renderer2
   ) {}
   videos: Item[] = [];
   category: string | null = 'Coding';
@@ -25,28 +25,25 @@ export class VideosPageComponent implements OnInit {
   nextPageToken?: string;
   fetched: boolean = false;
   ngOnInit(): void {
-    if (AppComponent.isBrowser) {
-      this.activatedRoute.paramMap.subscribe((params) => {
-        this.category = <string>params.get('category');
-        if (!this.category) return;
-        this.getVideos();
-      });
-      this.activatedRoute.queryParams.subscribe((params) => {
-        this.query = <string>params['q'];
-        if (!this.query) return;
-        this.getVideos();
-      });
-    }
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.category = <string>params.get('category');
+      if (!this.category) return;
+      this.getVideos();
+    });
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.query = <string>params['q'];
+      if (!this.query) return;
+      this.getVideos();
+    });
   }
+
   getVideos(): void {
     this.meta.updateMetaData(
-      this.renderer.selectRootElement('meta'),
       `Comet multimedia - ${this.category || this.query}`,
       `Browse ${this.category || this.query} videos on Comet multimedia.`,
       `https://comet-multimedia.up.railway.app${this.router.url}`,
       'https://comet-multimedia.up.railway.app/assets/images/comet-og-thumb.jpg'
     );
-    if(AppComponent.isBrowser)
     this.videosService
       .getVideos(<string>(this.category || this.query))
       .subscribe((response) => {

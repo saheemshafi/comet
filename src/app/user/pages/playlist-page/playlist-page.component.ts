@@ -23,36 +23,34 @@ export class PlaylistPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private meta: SeoService,
-    private renderer:Renderer2
+    private title: Title,
+    
   ) {}
 
   ngOnInit(): void {
-    if (AppComponent.isBrowser) {
-      this.activatedRoute.paramMap.subscribe((params) => {
-        this.playlistId = <string>params.get('playlistId');
-        if (!this.playlistId) return;
-        this.playlistService
-          .getPlaylistDetails(this.playlistId)
-          .subscribe((response) => {
-            this.playlistDetails = response.items[0];
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.playlistId = <string>params.get('playlistId');
+      if (!this.playlistId) return;
+      this.playlistService
+        .getPlaylistDetails(this.playlistId)
+        .subscribe((response) => {
+          this.playlistDetails = response.items[0];
 
-            this.meta.updateMetaData(
-              this.renderer.selectRootElement('meta'),
-              this.playlistDetails.snippet.title,
-              this.playlistDetails.snippet.description,
-              `https://comet-multimedia.up.railway.app${this.router.url}`,
-              this.playlistDetails.snippet.thumbnails.standard.url
-            );
-          });
-        this.playlistService
-          .getPlaylistVideos(this.playlistId)
-          .subscribe((response) => {
-            this.fetched = true;
-            this.nextPageToken = response.nextPageToken;
-            this.videos = response.items;
-          });
-      });
-    }
+          this.meta.updateMetaData(
+            this.playlistDetails.snippet.title,
+            this.playlistDetails.snippet.description,
+            `https://comet-multimedia.up.railway.app${this.router.url}`,
+            this.playlistDetails.snippet.thumbnails.standard.url
+          );
+        });
+      this.playlistService
+        .getPlaylistVideos(this.playlistId)
+        .subscribe((response) => {
+          this.fetched = true;
+          this.nextPageToken = response.nextPageToken;
+          this.videos = response.items;
+        });
+    });
   }
 
   fetchNextPage() {

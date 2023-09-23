@@ -19,17 +19,15 @@ export class ChannelPlaylistsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (AppComponent.isBrowser) {
-      this.activatedRoute.parent?.paramMap.subscribe((params) => {
-        this.channelId = <string>params.get('channelId');
-        if (!this.channelId) return;
-        this.channelService
-          .getChannelPlaylists(this.channelId)
-          .subscribe((response) => {
-            this.fetched = true;
-            this.playlists = response.items;
-          });
-      });
-    }
+    this.activatedRoute.parent?.paramMap.subscribe((params) => {
+      this.channelId = <string>params.get('channelId');
+      if (!this.channelId) return;
+      this.channelService
+        .getChannelPlaylists(this.channelId)
+        .subscribe((response) => {
+          this.fetched = true;
+          this.playlists = response.items;
+        });
+    });
   }
 }
