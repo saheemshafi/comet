@@ -1,7 +1,6 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
 import { PlaylistDetails } from 'src/app/interfaces/playlist';
 import { Videos } from 'src/app/interfaces/playlistItems';
 import { PlaylistService } from 'src/app/services/playlist.service';

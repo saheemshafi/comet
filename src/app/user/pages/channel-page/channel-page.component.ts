@@ -1,7 +1,5 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
 import { Channel } from 'src/app/interfaces/channel';
 import { ChannelService } from 'src/app/services/channel.service';
 import { SeoService } from 'src/app/services/seo.service';

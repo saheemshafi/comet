@@ -25,9 +25,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.languages = this.langService.getLanguages();
-    this.languages.subscribe((language) => {
-      console.log(language);
-    });
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.isHidden = ['/playlist/', '/channel/', '/video/'].some((item) => {

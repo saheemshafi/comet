@@ -1,7 +1,5 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
 import { Item } from 'src/app/interfaces/search';
 import { SeoService } from 'src/app/services/seo.service';
 import { VideosService } from 'src/app/services/videos.service';
@@ -16,8 +14,7 @@ export class VideosPageComponent implements OnInit {
     private videosService: VideosService,
     private activatedRoute: ActivatedRoute,
     private meta: SeoService,
-    private router: Router,
-    private renderer: Renderer2
+    private router: Router
   ) {}
   videos: Item[] = [];
   category: string | null = 'Coding';
@@ -46,10 +43,15 @@ export class VideosPageComponent implements OnInit {
     );
     this.videosService
       .getVideos(<string>(this.category || this.query))
-      .subscribe((response) => {
-        this.nextPageToken = response.nextPageToken;
-        this.fetched = true;
-        this.videos = this.filterResponse(response.items);
+      .subscribe({
+        next: (response) => {
+          this.nextPageToken = response.nextPageToken;
+          this.fetched = true;
+          this.videos = this.filterResponse(response.items);
+        },
+        error: (err) => {
+          this.fetched = true;
+        },
       });
   }
   filterResponse(videos: Item[]): Item[] {

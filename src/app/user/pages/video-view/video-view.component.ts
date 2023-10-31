@@ -1,15 +1,14 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Item } from 'src/app/interfaces/video';
-import { Item as Videos } from 'src/app/interfaces/search';
-import { SuggestionsService } from 'src/app/services/suggestions.service';
-import { VideoService } from 'src/app/services/video.service';
-import { CommentsService } from 'src/app/services/comments.service';
 import { Comment } from 'src/app/interfaces/comments';
-import { AppComponent } from 'src/app/app.component';
+import { Item as Videos } from 'src/app/interfaces/search';
+import { Item } from 'src/app/interfaces/video';
+import { CommentsService } from 'src/app/services/comments.service';
 import { SeoService } from 'src/app/services/seo.service';
+import { SuggestionsService } from 'src/app/services/suggestions.service';
 import { TranslationService } from 'src/app/services/translation.service';
+import { VideoService } from 'src/app/services/video.service';
 
 @Component({
   selector: 'app-video-view',
