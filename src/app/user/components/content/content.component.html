@@ -20,9 +20,6 @@
       [playlist]="item"
     ></app-playlist-card>
   </ng-container>
-  <ng-container *ngIf="!content || content.length == 0">
-    <p class="text-white py-24">Oops! Nothing found</p>
-  </ng-container>
 </div>
 <div
   [ngClass]="{ hidden: fetched }"
