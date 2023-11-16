@@ -1,27 +1,24 @@
 <div
-  class="flex flex-wrap justify-center gap-6 lg:gap-8"
+  class="@container"
   infiniteScroll
   [infiniteScrollDistance]="0"
-  [infiniteScrollUpDistance]="0"
+  [infiniteScrollUpDistance]="30"
   [infiniteScrollThrottle]="50"
   (scrolled)="onScrolled()"
 >
-  <ng-container *ngFor="let item of content">
-    <app-video-card
-      *ngIf="item.id.videoId || isString(item.id)"
-      [video]="item"
-    ></app-video-card>
-    <app-channel-card
-      *ngIf="item.id.channelId"
-      [channel]="item"
-    ></app-channel-card>
-    <app-playlist-card
-      *ngIf="item.id.playlistId"
-      [playlist]="item"
-    ></app-playlist-card>
-  </ng-container>
+  <div class="grid p-4 @lg:grid-cols-2 @4xl:grid-cols-3 gap-x-4 gap-y-6">
+    @for (item of content; track item.id ) {
+    <!-- conditions to render item in their respective component -->
+    @if (item.id.videoId || isString(item.id)) {
+    <app-video-card [video]="item"></app-video-card>
+    }@else if (item.id.channelId) {
+    <app-channel-card [channel]="item"></app-channel-card>
+    }@else {
+    <app-playlist-card [playlist]="item"></app-playlist-card>
+    } }
+  </div>
 </div>
 <div
   [ngClass]="{ hidden: fetched }"
-  class="mx-auto my-24 h-40 w-40 animate-spin rounded-full border-8 border-rose-500 border-t-transparent"
+  class="mx-auto my-24 h-32 w-32 animate-spin rounded-full border-8 border-rose-500 border-t-transparent"
 ></div>

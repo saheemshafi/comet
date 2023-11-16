@@ -1,18 +1,18 @@
 <div
-  class="relative isolate flex h-72 min-w-[290px] max-w-[320px] flex-col rounded-xl bg-slate-800 p-3 transition-shadow hover:shadow-lg"
+  class="relative isolate flex flex-col rounded-xl transition-shadow hover:shadow-lg"
 >
-  <div
-    class="group relative h-[168px] max-h-[168px] min-w-[290px] max-w-[320px] flex-1 overflow-hidden rounded-lg"
-  >
+  <div class="group relative flex-1 overflow-hidden rounded-lg">
     <a
-      [routerLink]="'/video/' + (video.id.videoId || video.snippet.resourceId.videoId)"
-      class="absolute inset-0 grid place-items-center rounded-lg bg-black/60 text-6xl text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      [routerLink]="
+        '/video/' + (video.id.videoId || video.snippet.resourceId.videoId)
+      "
+      class="absolute inset-0 grid aspect-video place-items-center rounded-lg bg-black/60 text-6xl text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
       ><i class="bx bx-play"></i
     ></a>
     <img
       loading="lazy"
       fetchpriority="low"
-      class="rounded-lg object-cover"
+      class="w-full rounded-lg object-cover"
       [src]="
         video.snippet.thumbnails.medium.url ||
         '../../../assets/images/comet.svg'
@@ -23,19 +23,20 @@
     />
   </div>
   <div class="mt-2">
-    <div class="flex items-start px-2">
+    <div class="px-2">
       <div>
         <p
-          class="text-base font-medium tracking-normal text-slate-300 line-clamp-2"
+          class="text-base font-medium tracking-normal text-slate-300"
           [title]="video.snippet.title"
         >
           <a
+            class="line-clamp-2"
             [routerLink]="'/video/' + video.id.videoId"
             [innerHTML]="video.snippet.title"
           ></a>
         </p>
         <p
-          class="mt-1 flex items-center text-xs font-medium tracking-wide text-slate-400 line-clamp-1 hover:text-slate-300"
+          class="line-clamp-1 mt-1 flex items-center text-xs font-medium tracking-wide text-slate-400 hover:text-slate-300"
           [title]="video.snippet.channelTitle"
         >
           <a [routerLink]="'/channel/' + video.snippet.channelId"
