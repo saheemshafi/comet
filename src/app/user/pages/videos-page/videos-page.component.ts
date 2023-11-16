@@ -34,7 +34,7 @@ export class VideosPageComponent implements OnInit {
         ),
         tap({
           next: (params) => {
-            const query = params.get('category') || params.get('q');
+            const query = params.get('category') || params.get('q') || "";
             this.category = query;
             this.meta.updateMetaData(
               `Comet multimedia - ${query}`,

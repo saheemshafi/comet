@@ -1,4 +1,4 @@
-import 'zone.js/zone';
+import 'zone.js';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
