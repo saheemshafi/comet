@@ -4,7 +4,7 @@ FROM node:20-slim
 WORKDIR /comet
 ## Copy source code
 COPY package*.json .
-RUN npm install
+RUN npm install --production
 COPY . .
 RUN npm run build
 ## Start the application
