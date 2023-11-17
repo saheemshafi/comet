@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, switchMap, take, takeUntil, tap } from 'rxjs';
@@ -34,7 +35,7 @@ export class VideosPageComponent implements OnInit {
         ),
         tap({
           next: (params) => {
-            const query = params.get('category') || params.get('q') || "";
+            const query = params.get('category') || params.get('q') || '';
             this.category = query;
             this.meta.updateMetaData(
               `Comet multimedia - ${query}`,
@@ -56,8 +57,9 @@ export class VideosPageComponent implements OnInit {
           this.fetched = true;
           this.videos = this.filterResponse(response.items);
         },
-        error: (err) => {
-          console.log(err);
+        error: (error) => {
+          error instanceof HttpErrorResponse &&
+            console.log(`[HTTPERROR]: ${error.message}`);
           this.fetched = true;
         },
       });
