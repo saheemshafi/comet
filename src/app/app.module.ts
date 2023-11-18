@@ -1,5 +1,4 @@
 import {
-  HttpClientModule,
   HttpInterceptorFn,
   provideHttpClient,
   withFetch,

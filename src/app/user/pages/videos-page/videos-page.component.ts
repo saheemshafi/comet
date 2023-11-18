@@ -55,7 +55,7 @@ export class VideosPageComponent implements OnInit {
         next: (response) => {
           this.nextPageToken = response.nextPageToken;
           this.fetched = true;
-          this.videos = this.filterResponse(response.items);
+          this.videos = this.videosService.filterResponse(response.items);
         },
         error: (error) => {
           error instanceof HttpErrorResponse &&
@@ -63,14 +63,6 @@ export class VideosPageComponent implements OnInit {
           this.fetched = true;
         },
       });
-  }
-
-  filterResponse(videos: Item[]): Item[] {
-    return videos.filter(
-      (item) =>
-        (item.id.videoId || item.id.channelId || item.id.playlistId) !==
-        undefined
-    );
   }
 
   fetchNextPage() {
@@ -84,7 +76,9 @@ export class VideosPageComponent implements OnInit {
         this.nextPageToken = response.nextPageToken
           ? response.nextPageToken
           : '';
-        this.videos = this.videos.concat(this.filterResponse(response.items));
+        this.videos = this.videos.concat(
+          this.videosService.filterResponse(response.items)
+        );
       });
   }
 }

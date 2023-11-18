@@ -14,11 +14,11 @@
       fetchpriority="low"
       class="w-full rounded-lg object-cover"
       [src]="
-        video.snippet.thumbnails.medium.url ||
+        video.snippet.thumbnails.medium?.url ||
         '../../../assets/images/comet.svg'
       "
-      [width]="video.snippet.thumbnails.medium.width"
-      [height]="video.snippet.thumbnails.medium.height"
+      [width]="video.snippet.thumbnails.medium?.width"
+      [height]="video.snippet.thumbnails.medium?.height"
       [alt]="video.snippet.title"
     />
   </div>

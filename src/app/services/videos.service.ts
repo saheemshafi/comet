@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { getYTHeaders } from '../headers/headers';
-import { SearchApiResponse } from '../interfaces/search';
+import { Item, SearchApiResponse } from '../interfaces/search';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,5 +33,13 @@ export class VideosService {
       headers: getYTHeaders(),
       params: params,
     });
+  }
+
+  filterResponse(videos: Item[]): Item[] {
+    return videos.filter(
+      (item) =>
+        (item.id.videoId || item.id.channelId || item.id.playlistId) !==
+        undefined
+    );
   }
 }

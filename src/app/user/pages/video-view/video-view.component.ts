@@ -9,6 +9,7 @@ import { SeoService } from 'src/app/services/seo.service';
 import { SuggestionsService } from 'src/app/services/suggestions.service';
 import { TranslationService } from 'src/app/services/translation.service';
 import { VideoService } from 'src/app/services/video.service';
+import { VideosService } from 'src/app/services/videos.service';
 
 @Component({
   selector: 'app-video-view',
@@ -31,7 +32,8 @@ export class VideoViewComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private router: Router,
     private meta: SeoService,
-    private langService: TranslationService
+    private langService: TranslationService,
+    private videosService: VideosService
   ) {}
 
   ngOnInit(): void {
@@ -53,11 +55,17 @@ export class VideoViewComponent implements OnInit {
         .subscribe((response) => {
           this.fetched = true;
           this.nextPageToken = response.nextPageToken;
-          this.videos = response.items;
+          this.videos = this.videosService.filterResponse(response.items);
         });
 
       this.commentsSerive.getComments(this.videoId).subscribe((response) => {
-        this.comments = response.items;
+        if ('error' in response) {
+          throw new Error(
+            (response.error as { message: string }).message as string
+          );
+        } else {
+          this.comments = response.items;
+        }
       });
     });
   }
